@@ -4,15 +4,16 @@
 <div class="container">
     <div class="row">
       <h3 class="center">Cadastro do Sistema</h3>
-      <form class="form-horizontal" role="form" method="POST" action="{{ route('registrar') }}">
+      <form class="form-horizontal" role="form" method="POST" action="{{ url('/register') }}">
           {{ csrf_field() }}
 
           <div class="input-field col s12">
             <select name="secao_id" id="secao_id">
-              <option value='0'>SELECIONE...</option>
-                @foreach($secoes as $secao)
-                  <option value='{{$secao->id}}'>{{$secao->nome}}</option>
-                @endforeach
+              <option value='0'>SEÇÃO...</option>
+              @foreach($secoes as $secao)
+                <option value='{{ $secao->id }}'>{{ $secao->nome }}</option>
+              @endforeach
+                
             </select>
               @if ($errors->has('secao_id'))
                   <span>
@@ -33,10 +34,11 @@
 
           <div class="input-field col s12">
             <select name="cargo_id" id="cargo_id">
-              <option value='0'>SELECIONE...</option>
+              <option value='0'>CARGO...</option>
               @foreach($cargos as $cargo)
-                <option value='{{$cargo->id}}'>{{$cargo->descricao}}</option>
+                <option value='{{ $cargo->id }}'>{{ $cargo->descricao }}</option>
               @endforeach
+             
             </select>
               @if ($errors->has('cargo_id'))
                   <span>

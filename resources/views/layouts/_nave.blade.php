@@ -5,7 +5,7 @@
       
       @if (Auth::guest())
           <li><a href="{{ url('/login') }}">LOGIN</a></li>
-          <li><a href="{{ url('/register') }}">CADASTRO</a></li>
+          <li><a href="{{ url('/usuario/cadastrar') }}">CADASTRO</a></li>
       @else
         <li><a href="{{ url('/home')}}">{{ Auth::user()->cargo->nome }} {{ Auth::user()->nm_guerra }}</a></li></li>
         <li>

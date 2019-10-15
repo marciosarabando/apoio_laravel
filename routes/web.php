@@ -19,7 +19,7 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::get('/usuario/cadastrar', 'Usuario@showFormRegistro')->name('novousuario');
 
-Route::get('/register', 'Auth\RegisterController@showFormRegistro')->name('register');
-
-Route::post('/register', 'Auth\RegisterController@create')->name('registrar');
+//Route::get('/novousuario', 'Auth\RegisterController@showFormRegistro')->name('novousuario');
+//Route::post('/register', 'Auth\RegisterController@create')->name('register');
