@@ -2,7 +2,11 @@
 	<select name="equipamento_tipo_id" id="equipamento_tipo_id">
 		<option value='0'>TIPO DE EQUIPAMENTO...</option>
 		@foreach($equipamentos_tipos as $equipamento_tipo)
-			<option value='{{ $equipamento_tipo->id }}'>{{ $equipamento_tipo->nome }}</option>
+			@if(isset($registro->equipamento_tipo_id) && $registro->equipamento_tipo_id == $equipamento_tipo->id)
+				<option value='{{ $equipamento_tipo->id }}' selected>{{ $equipamento_tipo->nome }}</option>
+			@else
+				<option value='{{ $equipamento_tipo->id }}'>{{ $equipamento_tipo->nome }}</option>
+			@endif
 		@endforeach
 		
 	</select>

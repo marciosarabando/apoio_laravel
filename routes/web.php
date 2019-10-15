@@ -29,7 +29,7 @@ Route::group(['middleware' => 'auth', 'prefix' => 'home'], function () {
 
     Route::get('equipamento/{id}', ['as'=>'equipamento','uses'=>'EquipamentoController@index']);
     Route::post('equipamento',['as'=>'equipamento.store','uses'=>'EquipamentoController@store']);
-    Route::delete('equipamento/{equipamento}', ['as'=>'equipamento.destroy','uses'=>'EquipamentoController@equipamentoDestroy']);
+    Route::delete('equipamento/{equipamento}', ['as'=>'equipamento.destroy','uses'=>'EquipamentoController@destroy']);
   
 
 });

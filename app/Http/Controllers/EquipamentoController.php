@@ -75,7 +75,15 @@ class EquipamentoController extends Controller
      */
     public function edit($id)
     {
-        //
+        $equipamentos_tipos = TipoEquipamento::all();
+        $registro = Equipamento::find($id);
+
+        $caminhos = [
+            ['url' => '/home','titulo' => 'Home'],
+            ['url' => '/home/equipamento','titulo' => 'Equipamentos'],
+            ['url' => '','titulo' => 'Editar'],
+        ];
+        return view ('equipamento.editar', compact('registro', 'caminhos', 'equipamentos_tipos'));
     }
 
     /**
@@ -87,7 +95,9 @@ class EquipamentoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        Equipamento::find($id)->update($request->all());
+        return redirect()->route('equipamento.index');
+        
     }
 
     /**
@@ -98,6 +108,7 @@ class EquipamentoController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Equipamento::find($id)->delete();
+        return redirect()->route('equipamento.index');
     }
 }
