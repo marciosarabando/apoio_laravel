@@ -15,7 +15,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'cargo_id', 'perfil_id', 'secao_id', 'login', 'nm_guerra', 'password',
     ];
 
     /**
@@ -26,4 +26,25 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    //Função para Retornar o Cargo Relacionado ao Registro na Base
+    //Muitos para 1
+    public function cargo()
+    {
+        return $this->belongsTo('App\Cargo');
+    }
+
+    //Função para Retornar o Perfil Relacionado ao Registro na Base
+    //Muitos para 1
+    public function perfil()
+    {
+        return $this->belongsTo('App\Perfil');
+    }
+
+    //Função para Retornar o Secao Relacionado ao Registro na Base
+    //Muitos para 1
+    public function secao()
+    {
+        return $this->belongsTo('App\Secao');
+    }
 }

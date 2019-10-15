@@ -7,6 +7,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
+use App\Secao;
+use App\Cargo;
+
 class RegisterController extends Controller
 {
     /*
@@ -48,8 +51,11 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
+            'cargo_id' => 'required',
+            'perfil_id' => 'required',
+            'secao_id' => 'required',
+            'login' => 'required|string|max:255|unique:users',
+            'nm_guerra' => 'required|string|max:255',
             'password' => 'required|string|min:6|confirmed',
         ]);
     }
@@ -63,9 +69,21 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
+            'cargo_id' => $data['cargo_id'],
+            'perfil_id' => $data['perfil_id'],
+            'secao_id' => $data['secao_id'],
+            'login' => $data['login'],
+            'nm_guerra' => $data['nm_guerra'],
             'password' => bcrypt($data['password']),
         ]);
     }
+
+    //Para customizar o caminho da página de login
+    public function showFormRegistro()
+    {
+        $cargos = Cargo::all();
+        $secoes = Secao::all();
+        return view('auth.register', compact('cargos', 'secoes'));
+    }
+
 }

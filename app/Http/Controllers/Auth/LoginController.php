@@ -36,4 +36,16 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+
+    public function username()
+    {
+        return 'login';
+    }
+
+    //Para customizar o caminho da página de login
+    //public function showLoginForm()
+    //{
+    //      return view('minha_view_personalizada');
+    //}
+  
 }

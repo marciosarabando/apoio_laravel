@@ -13,6 +13,10 @@ return [
     */
 
     'name' => env('APP_NAME', 'Laravel'),
+    'logoSite' => 'APOIO SFPC/2',
+    'corSite' => 'green',
+    'descricaoSite' => 'Sistema de Apoio de Informática do SFPC/2',
+    'autorSite' => '1º Ten Sarabando',
 
     /*
     |--------------------------------------------------------------------------
