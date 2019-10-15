@@ -14,6 +14,12 @@ class CargoSeeder extends Seeder
     {
         //O método firstOrCreate - Cria o registro apenas se ele já não tiver sido criado
         $p1 = Cargo::firstOrCreate([
+            'nome' => 'Sc',
+            'descricao' => 'Servidor Civil'
+        ]);
+
+       
+        $p1 = Cargo::firstOrCreate([
             'nome' => 'Sd',
             'descricao' => 'Soldado'
         ]);

@@ -21,5 +21,15 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/usuario/cadastrar', 'Usuario@showFormRegistro')->name('novousuario');
 
-//Route::get('/novousuario', 'Auth\RegisterController@showFormRegistro')->name('novousuario');
-//Route::post('/register', 'Auth\RegisterController@create')->name('register');
+//Grupo de Rotas Protegido a partir do prefixo /admin
+//Todas as Rotas que fizerem apontamentos dentro de /admin estarão protegidas por autenticação
+Route::group(['middleware' => 'auth', 'prefix' => 'home'], function () {
+
+    Route::resource('equipamento','EquipamentoController');
+
+    Route::get('equipamento/{id}', ['as'=>'equipamento','uses'=>'EquipamentoController@index']);
+    Route::post('equipamento',['as'=>'equipamento.store','uses'=>'EquipamentoController@store']);
+    Route::delete('equipamento/{equipamento}', ['as'=>'equipamento.destroy','uses'=>'EquipamentoController@equipamentoDestroy']);
+  
+
+});

@@ -13,6 +13,7 @@ class CreateChamadosTable extends Migration
      */
     public function up()
     {
+        /*
         Schema::create('chamados', function (Blueprint $table) {
             $table->increments('id');
             
@@ -31,6 +32,7 @@ class CreateChamadosTable extends Migration
 
             $table->dateTime('encerrado_em');
         });
+        */
     }
 
     /**

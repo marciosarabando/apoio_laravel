@@ -13,11 +13,13 @@ class CreateChamadosTiposTable extends Migration
      */
     public function up()
     {
+        /*
         Schema::create('chamados_tipos', function (Blueprint $table) {
             $table->increments('id');
             $table->string('descricao');
             $table->timestamps();
         });
+        */
     }
 
     /**
@@ -27,6 +29,8 @@ class CreateChamadosTiposTable extends Migration
      */
     public function down()
     {
+        /*
         Schema::dropIfExists('chamados_tipos');
+        */
     }
 }

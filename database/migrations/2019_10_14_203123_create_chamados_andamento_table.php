@@ -13,6 +13,7 @@ class CreateChamadosAndamentoTable extends Migration
      */
     public function up()
     {
+        /*
         Schema::create('chamados_andamento', function (Blueprint $table) {
             $table->increments('id');
             
@@ -28,6 +29,7 @@ class CreateChamadosAndamentoTable extends Migration
 
             $table->timestamps();
         });
+        */
     }
 
     /**
@@ -37,6 +39,8 @@ class CreateChamadosAndamentoTable extends Migration
      */
     public function down()
     {
+        /*
         Schema::dropIfExists('chamados_andamento');
+        */
     }
 }

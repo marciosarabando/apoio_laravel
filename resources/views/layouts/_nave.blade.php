@@ -1,6 +1,6 @@
 <nav class="{{config('app.corSite')}}">
   <div class="nav-wrapper container">
-    <a href="/home" class="brand-logo">{{config('app.logoSite')}}</a>
+    <a href="/" class="brand-logo">{{config('app.logoSite')}}</a>
     <ul id="nav-mobile" class="right hide-on-med-and-down">
       
       @if (Auth::guest())
