@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row">
       <h3 class="center">Cadastro do Sistema</h3>
-      <form class="form-horizontal" role="form" method="POST" action="{{ url('/register') }}">
+      <form class="form-horizontal" role="form" method="POST" action="{{ route('registrar') }}">
           {{ csrf_field() }}
 
           <div class="input-field col s12">

@@ -7,12 +7,12 @@
           <li><a href="{{ url('/login') }}">LOGIN</a></li>
           <li><a href="{{ url('/register') }}">CADASTRO</a></li>
       @else
-        <li><a href="{{ url('/admin')}}">{{ Auth::user()->name }}</a></li></li>
+        <li><a href="{{ url('/home')}}">{{ Auth::user()->cargo->nome }} {{ Auth::user()->nm_guerra }}</a></li></li>
         <li>
             <a href="{{ url('/logout') }}"
                 onclick="event.preventDefault();
                          document.getElementById('logout-form').submit();">
-                Sair
+                SAIR
             </a>
 
             <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
