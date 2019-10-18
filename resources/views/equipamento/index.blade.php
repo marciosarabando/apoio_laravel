@@ -30,9 +30,14 @@
                             <td>{{$equipamento->marca_modelo}}</td>
                             <td>{{$equipamento->nr_serie}}</td>
                             <td>{{$equipamento->obs}}</td>
-                            <td>
-                                <a title="Cautela" class="btn blue" href="{{route('equipamento.index', $equipamento->id)}}"><i class="material-icons">lock_outline</i></a>
-                            </td>
+                            
+                            <td><form action="{{route('equipamento.destroy', [$equipamento->id])}}" method="post">
+                                    <a title="Editar" class="btn orange" href="{{ route('equipamento.edit',$equipamento->id) }}"><i class="material-icons">mode_edit</i></a>
+                                    {{ method_field('DELETE')}}
+                                    {{ csrf_field() }}
+                                    <button title="Deletar" class="btn red"><i class="material-icons">delete</i></button>
+
+                                </form></td>
                         <tr>
                     @endforeach
                 </tbody>
