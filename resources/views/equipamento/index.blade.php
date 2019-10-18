@@ -25,7 +25,7 @@
                         <tr>
                             <td>{{$equipamento->id}}</td>
                           
-                            <td>{{$equipamento->tipo_equipamento}}</td>
+                            <td>{{$equipamento->equipamento_tipo->nome}}</td>
                             
                             <td>{{$equipamento->marca_modelo}}</td>
                             <td>{{$equipamento->nr_serie}}</td>

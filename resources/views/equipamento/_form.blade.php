@@ -1,5 +1,5 @@
 <div class="input-field">
-	<select name="tipo_id" id="tipo_id">
+	<select name="equipamento_tipo_id" id="equipamento_tipo_id">
 		<option value='0'>TIPO DE EQUIPAMENTO...</option>
 		@foreach($equipamentos_tipos as $equipamento_tipo)
 			<option value='{{ $equipamento_tipo->id }}'>{{ $equipamento_tipo->nome }}</option>

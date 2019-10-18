@@ -15,7 +15,7 @@ class EquipamentoController extends Controller
      */
     public function index()
     {
-        $equipamentos = Equipamento::with('tipo_equipamento')->get();
+        $equipamentos = Equipamento::all();
 
         $caminhos = [
             ['url' => '/home','titulo' => 'Home'],

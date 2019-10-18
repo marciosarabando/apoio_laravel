@@ -12,6 +12,7 @@ class EquipamentoTipoSeeder extends Seeder
      */
     public function run()
     {
+      
         $p1 = TipoEquipamento::firstOrCreate([
             'nome' => 'DESKTOP',
             'descricao' => 'DESKTOP'
@@ -21,5 +22,6 @@ class EquipamentoTipoSeeder extends Seeder
             'nome' => 'NOTEBOOK',
             'descricao' => 'NOTEBOOK'
         ]);
+
     }
 }
