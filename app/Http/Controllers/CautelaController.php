@@ -54,7 +54,25 @@ class CautelaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        date_default_timezone_set('America/Sao_Paulo');
+	    $hoje = date('Y-m-d H:i');
+
+        //Cautela::create($request->all());
+        $cautela = new Cautela();
+        $cautela->equipamento_id = $request->input('equipamento_id');
+        $cautela->pessoa_id = $request->input('pessoa_id');
+        $cautela->dt_cautela = $hoje;
+        $cautela->dt_descautela = null;
+        $cautela->obs = $request->input('obs');
+
+        if($cautela->save())
+        {
+            //return redirect('produtos/create')->with('success','Produto Cadastrado com Sucesso!!!');
+            return redirect()->route('cautela.index');
+        }
+  
+        
     }
 
     /**
