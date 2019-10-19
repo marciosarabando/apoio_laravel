@@ -32,4 +32,7 @@ Route::group(['middleware' => 'auth', 'prefix' => 'home'], function () {
     Route::delete('equipamento/{equipamento}', ['as'=>'equipamento.destroy','uses'=>'EquipamentoController@destroy']);
   
 
+    Route::resource('cautela','CautelaController');
+
+
 });

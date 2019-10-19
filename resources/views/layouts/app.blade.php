@@ -10,25 +10,26 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
-    <!-- Styles -->
+    <!-- CSS  -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/apoio.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/materialize.css') }}" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <link href="{{ asset('css/style.css') }}" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <link href="{{ asset('css/apoio.css') }}" type="text/css" rel="stylesheet" media="screen,projection"/>
+
 </head>
 <body>
+  
   @include('layouts._nave')
-<main>
-  @yield('content')
-</main>
-@include('layouts._footer')
 
-    <!-- Scripts -->
-    <script src="/js/app.js"></script>
+  @yield('content')
+
+  @include('layouts._footer')
+
+    <!--  Scripts-->
+    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="/js/materialize.js"></script>
+    <script src="/js/init.js"></script>
     <script src="/js/apoio.js"></script>
-    <!--
-    <script id="__bs_script__">//<![CDATA[
-        document.write("<script async src='http://HOST:3000/browser-sync/browser-sync-client.js?v=2.18.7'><\/script>".replace("HOST", location.hostname));
-      //]]></script>
-    -->
+
 </body>
 </html>

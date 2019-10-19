@@ -1,0 +1,41 @@
+/* Custom Stylesheet */
+/**
+ * Use this file to override Materialize files so you can update
+ * the core Materialize files in the future
+ *
+ * Made By MaterializeCSS.com
+ */
+
+.icon-block {
+  padding: 0 15px;
+}
+.icon-block .material-icons {
+	font-size: inherit;
+}
+
+html, body {
+  height: 100%;
+  }
+  
+/*Na primeira div do seu html */
+
+.container {
+  min-height: 68%;
+  }
+  
+* html #NomeDaSuaPrimeiraDiv {
+  height: 100%; 
+  }
+  
+  /*Posicionando o rodapé*/
+.page-footer {
+  position: relative;
+  }
+
+.page-footer1 {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  }
+
+  
