@@ -1,5 +1,5 @@
 <nav class="light-{{config('app.corSite')}} lighten-1" role="navigation">
-    <div class="nav-wrapper container"><a id="logo-container" href="/" class="brand-logo">{{config('app.logoSite')}}</a>
+    <div class="nav-wrapper container"><a id="logo-container" href="/home" class="brand-logo">{{config('app.logoSite')}}</a>
       <ul class="right hide-on-med-and-down">
         
         @if (Auth::guest())

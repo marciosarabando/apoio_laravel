@@ -22,4 +22,36 @@ class Cautela extends Model
     {
         return $this->belongsTo('App\Pessoa');
     }
+
+    public function equipamentos()
+    {
+        return $this->belongsToMany(Equipamento::class);
+    }
+
+    public function existeEquipamento($equipamento)
+    {
+      if (is_string($equipamento))
+      {
+        $equipamento = Equipamento::where('marca_modelo','=',$equipamento)->firstOrFail();
+      }
+      return (boolean) $this->equipamento()->find($equipamento->id);
+    }
+
+    public function vinculaEquipamento($equipamento)
+    {
+        /*
+        if (is_string($equipamento))
+        {
+            $equipamento = Equipamento::where('marca_modelo','=',$equipamento)->firstOrFail();
+        }
+
+        if($this->existeEquipamento($equipamento))
+        {
+            return;
+        }
+        */
+
+        //Adiciona o Equipamento usando a função equipamento com o método Attach passando o Obj Equipamento
+        return $this->equipamentos()->attach($equipamento);
+    }
 }

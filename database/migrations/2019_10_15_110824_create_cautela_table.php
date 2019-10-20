@@ -28,6 +28,22 @@ class CreateCautelaTable extends Migration
             $table->foreign('equipamento_id')->references('id')->on('equipamentos')->onDelete('cascade');
             $table->foreign('pessoa_id')->references('id')->on('pessoas')->onDelete('cascade');
         });
+
+        //Tabela de Relacionamento Cautelas com Equipamentos
+        //Seguir o padrão de nomenclatura e ordem alfabética
+        //Ex. perf e depois perm = perfis_permissoes
+        //Usar/Respeitar o Nome do Modelo
+        Schema::create('cautela_equipamento', function (Blueprint $table) {
+            $table->integer('cautela_id')->unsigned();
+            $table->integer('equipamento_id')->unsigned();
+        
+            //Foreign Keys
+            $table->foreign('cautela_id')->references('id')->on('cautelas')->onDelete('cascade');
+            $table->foreign('equipamento_id')->references('id')->on('equipamentos')->onDelete('cascade');
+            
+            //Key - Chave Primária
+            $table->primary(['cautela_id','equipamento_id']);
+        });
     }
 
     /**
@@ -37,6 +53,7 @@ class CreateCautelaTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('cautela_equipamento');
+        Schema::dropIfExists('cautelas');
     }
 }

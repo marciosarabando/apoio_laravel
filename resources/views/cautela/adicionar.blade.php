@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
-	<h2 class="center">Cautela de Equipamento</h2>
+	<p class="flow-text">Cautela de Equipamento</p>
 
 	@include('_caminho')
 	

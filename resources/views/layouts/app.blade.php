@@ -23,6 +23,8 @@
 
   @yield('content')
 
+  <br>
+
   @include('layouts._footer')
 
     <!--  Scripts-->

@@ -34,5 +34,7 @@ Route::group(['middleware' => 'auth', 'prefix' => 'home'], function () {
 
     Route::resource('cautela','CautelaController');
 
+    Route::resource('pessoa','PessoaController');
+
 
 });

@@ -40,10 +40,22 @@
             <div class="card green">
                 <div class="card-content white-text">
                     <span class="card-title">PESSOA</span>
-                    <p>Cadastro de Pessoas</p>
+                    <p>Pessoas para Cautelas</p>
                 </div>
                 <div class="card-action">
-                    <a href="{{route('equipamento.index')}}">Vizualizar</a>
+                    <a href="{{route('pessoa.index')}}">Vizualizar</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col s12 m6">
+            <div class="card blue">
+                <div class="card-content white-text">
+                    <span class="card-title">USUÁRIO</span>
+                    <p>Usuários do Sistema de Apoio</p>
+                </div>
+                <div class="card-action">
+                    <a href="{{route('pessoa.index')}}">Vizualizar</a>
                 </div>
             </div>
         </div>

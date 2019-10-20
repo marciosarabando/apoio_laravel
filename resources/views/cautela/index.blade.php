@@ -3,7 +3,8 @@
 @section('content')
 
     <div class='container'>
-        <h2 class="center">Equipamentos Cautelados</h2>
+        
+        <p class="flow-text">Equipamentos Cautelados</p>
 
         @include('_caminho')
 
@@ -25,7 +26,7 @@
                 <tbody>
                     @foreach($cautelas as $cautela)
                     <tr>
-                            <td>{{$cautela->dt_cautela}}</td>
+                            <td>{{date("d/m/Y H:i", strtotime($cautela->dt_cautela))}}</td>
 
                             <td>{{$cautela->equipamento->marca_modelo}}</td>
                           

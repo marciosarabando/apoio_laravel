@@ -39,7 +39,11 @@ class CautelaController extends Controller
             ['url' => '','titulo' => 'Cautelar Equipamento'],
         ];
 
-        $equipamentos = Equipamento::all();
+        $equipamentos = Equipamento::with('cautelas')->get();
+
+        //$equipamentos = Equipamento::with('cautelas')->where('cautela', '=', 'null')->get();
+
+        //return $equipamentos;
 
         $pessoas = Pessoa::all();
 
@@ -66,13 +70,20 @@ class CautelaController extends Controller
         $cautela->dt_descautela = null;
         $cautela->obs = $request->input('obs');
 
+        
+
         if($cautela->save())
         {
+
+            $equipamento = Equipamento::find($cautela->equipamento_id);
+
+            $cautela->vinculaEquipamento($equipamento);
+            
+            //return $cautela;
+            
             //return redirect('produtos/create')->with('success','Produto Cadastrado com Sucesso!!!');
             return redirect()->route('cautela.index');
         }
-  
-        
     }
 
     /**
@@ -117,6 +128,7 @@ class CautelaController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Cautela::find($id)->delete();
+        return redirect()->route('cautela.index');
     }
 }
