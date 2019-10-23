@@ -4,7 +4,7 @@
 
     <div class='container'>
         
-        <p class="flow-text">Cadastro de Pessoas</p>
+    <p class="flow-text">Cadastro de Pessoas</p>
 
         @include('_caminho')
   

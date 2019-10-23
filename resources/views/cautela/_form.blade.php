@@ -6,7 +6,7 @@
 				<option value='{{ $equipamento->id }}' selected>{{ $equipamento->marca_modelo }}</option>
 			@else
 				@if(count($equipamento->cautelas) == 0)
-				<option value='{{ $equipamento->id }}'>{{ $equipamento->marca_modelo }}</option>
+				<option value='{{ $equipamento->id }}'>{{ $equipamento->marca_modelo }} - {{ $equipamento->nr_serie }}</option>
 				@endif
 			@endif
 		@endforeach

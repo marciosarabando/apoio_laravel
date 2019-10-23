@@ -32,6 +32,7 @@
                             <td>{{$equipamento->obs}}</td>
                             
                             <td><form action="{{route('equipamento.destroy', [$equipamento->id])}}" method="post">
+                                    
                                     <a title="Editar" class="btn orange" href="{{ route('equipamento.edit',$equipamento->id) }}"><i class="material-icons">mode_edit</i></a>
                                     {{ method_field('DELETE')}}
                                     {{ csrf_field() }}

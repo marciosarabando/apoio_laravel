@@ -21,7 +21,10 @@ class CautelaController extends Controller
             ['url' => '','titulo' => 'Cautela'],
         ];
 
-        $cautelas = Cautela::all();
+        //$cautelas = Cautela::all();
+        
+        //Busca todas as cautelas que nao possuem data de descautela
+        $cautelas = Cautela::where('dt_descautela','=',null)->get();
 
         return view ('cautela.index', compact('caminhos','cautelas'));
     }
@@ -39,6 +42,7 @@ class CautelaController extends Controller
             ['url' => '','titulo' => 'Cautelar Equipamento'],
         ];
 
+        //Buscar a última cautela do Equipamento para saber se está com data de descautela = null
         $equipamentos = Equipamento::with('cautelas')->get();
 
         //$equipamentos = Equipamento::with('cautelas')->where('cautela', '=', 'null')->get();
@@ -128,7 +132,24 @@ class CautelaController extends Controller
      */
     public function destroy($id)
     {
+        
         Cautela::find($id)->delete();
+        return redirect()->route('cautela.index');
+
+    }
+
+    public function descautela($id)
+    {
+        date_default_timezone_set('America/Sao_Paulo');
+        $hoje = date('Y-m-d H:i');
+        
+        $cautela = Cautela::find($id);
+       
+        $cautela->dt_descautela = $hoje;
+
+        //return $cautela;
+        $cautela->update();
+
         return redirect()->route('cautela.index');
     }
 }

@@ -27,7 +27,7 @@ class CreateEquipamentoTable extends Migration
             $table->increments('id');
             $table->integer('equipamento_tipo_id')->unsigned();
             $table->string('marca_modelo');
-            $table->string('nr_serie');
+            $table->string('nr_serie')->unique();
             $table->string('obs')->nullable();
 
             $table->timestamps();
