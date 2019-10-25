@@ -1,6 +1,6 @@
 <div class="input-field">
 	<select name="equipamento_id" id="equipamento_id">
-		<option value='0'>EQUIPAMENTO...</option>
+		<option value='0'>EQUIPAMENTO:</option>
 		@foreach($equipamentos as $equipamento)
 			@if(isset($registro->equipamento_id) && $registro->equipamento_tipo_id == $equipamento->id)
 				<option value='{{ $equipamento->id }}' selected>{{ $equipamento->marca_modelo }}</option>

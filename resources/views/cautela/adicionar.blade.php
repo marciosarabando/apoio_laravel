@@ -7,17 +7,38 @@
 	@include('_caminho')
 	
 	<div class="row">
-		<form action="{{ route('cautela.store') }}" method="post">
+		<div class="col l11">
+			<form action="{{ route('cautela.store') }}" method="post">
+				{{ csrf_field() }}
+				@include('cautela._form')
 
-			{{ csrf_field() }}
-			@include('cautela._form')
+				<button class="btn green">Efetuar Cautela</button>
+				
+			</form>
+		</div>
 
-			<button class="btn green">Efetuar Cautela</button>
+		<div class="col l1">
+			<div class="row">
+				<div class="col l1">
+					<br>
+					<a title="Incluir Equipamento" class="btn blue" href="{{route('equipamento.create')}}"><i class="material-icons">desktop_mac</i></a>
+				</div>
+			</div>
 
-			
-		</form>
-			
+			<div class="row">
+				<div class="col l1">
+					
+					<a title="Incluir Pessoa" class="btn blue" href="{{route('pessoa.create')}}"><i class="material-icons">account_box</i></a>
+				</div>
+			</div>
+
+		</div>
+
+
+
 	</div>
+
+
 	
 </div>
 	

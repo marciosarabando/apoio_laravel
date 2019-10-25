@@ -18,7 +18,7 @@
                         <td>Nr Série</td>
                         
                         <td>Cautelado para</td>
-                        <td>Obs</td>
+                      
                         <td>Ação</td>
                     </tr>
                 </thead>
@@ -36,9 +36,9 @@
                             
                             <td>{{$cautela->pessoa->cargo->nome}} {{$cautela->pessoa->nome}}</td>
 
-                            <td>{{$cautela->obs}}</td>
+                         
 
-                            <td><a title="Abrir" class="btn blue" href="{{ route('cautela.show',$cautela->id) }}"><i class="material-icons">folder_open</i></a></td>
+                            <td><a title="Abrir" class="btn green" href="{{ route('cautela.show',$cautela->id) }}">ABRIR</a></td>
                             
                         <tr>
                     @endforeach
@@ -51,7 +51,7 @@
         <div class="row">
 		
 				<a class="btn blue" href="{{route('cautela.create')}}"><i class="material-icons">library_add</i> CAUTELAR EQUIPAMENTO</a>
-				<a title="Incluir Pessoa" class="btn blue" href="{{route('pessoa.create')}}"><i class="material-icons">account_box</i> CADASTRAR PESSOA</a>
+				
 	
 		</div>
 

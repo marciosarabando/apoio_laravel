@@ -37,6 +37,7 @@
                                     {{ method_field('DELETE')}}
                                     {{ csrf_field() }}
                                     <button title="Deletar" class="btn red"><i class="material-icons">delete</i></button>
+                                    <a class="btn blue" href="{{route('cautela.create')}}"><i class="material-icons">library_add</i> CAUTELAR</a>
 
                                 </form></td>
                         <tr>

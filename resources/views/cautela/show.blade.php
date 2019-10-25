@@ -21,6 +21,8 @@
             {{ csrf_field() }}
             <button title="Descautelar" class="btn red">DESCAUTELAR</button>
         </form>
+
+        
         
 
 </div>

@@ -54,6 +54,7 @@ class PessoaController extends Controller
         Pessoa::create($request->all());
   
         return redirect()->route('pessoa.index');
+        
     }
 
     /**

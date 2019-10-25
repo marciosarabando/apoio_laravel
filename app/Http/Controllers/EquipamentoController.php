@@ -51,9 +51,18 @@ class EquipamentoController extends Controller
      */
     public function store(Request $request)
     {
-        Equipamento::create($request->all());
+        //Equipamento::create($request->all());
+        $equipamento = new Equipamento();
+        $equipamento->equipamento_tipo_id = $request->input('equipamento_tipo_id');
+        $equipamento->marca_modelo = $request->input('marca_modelo');
+        $equipamento->nr_serie = $request->input('nr_serie');
+        $equipamento->obs = $request->input('obs');
   
-        return redirect()->route('equipamento.index');
+        
+        if($equipamento->save())
+        {
+            return redirect()->route('equipamento.index');
+        }
     }
 
     /**
