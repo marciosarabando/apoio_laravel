@@ -4,11 +4,12 @@
 
 <div class='container'>
         
-        <p class="flow-text">Detalhes da Cautela {{ $cautela->pessoa_id}}</p>
+        <p class="flow-text">CAUUTELA DO EQUIPAMENTO <b>{{ $equipamento->nr_serie }}</b></p>
 
         @include('_caminho')
 
-        <p><b>MATERIAL:</b> {{ $equipamento->marca_modelo }}</p>
+        <p><b>TIPO:</b> {{ $equipamento->equipamento_tipo->nome }}</p>
+        <p><b>MARCA / MODELO:</b> {{ $equipamento->marca_modelo }}</p>
         <p><b>NR SÉRIE:</b> {{ $equipamento->nr_serie }}</p>
         <p><b>CAUTELADO PARA:</b> {{ $cautela->pessoa->cargo->nome }} {{ $cautela->pessoa->nome }}</p>
         <p><b>DATA DA CAUTELA:</b> {{date("d/m/Y H:i", strtotime($cautela->dt_cautela))}}</p>
