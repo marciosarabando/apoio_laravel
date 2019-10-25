@@ -21,14 +21,14 @@
 			<div class="row">
 				<div class="col l1">
 					<br>
-					<a title="Incluir Equipamento" class="btn blue" href="{{route('equipamento.create')}}"><i class="material-icons">desktop_mac</i></a>
+					<a title="Incluir Equipamento" class="btn blue" href="{{route('equipamento.create')}}"><i class="material-icons">add</i></a>
 				</div>
 			</div>
 
 			<div class="row">
 				<div class="col l1">
 					
-					<a title="Incluir Pessoa" class="btn blue" href="{{route('pessoa.create')}}"><i class="material-icons">account_box</i></a>
+					<a title="Incluir Pessoa" class="btn blue" href="{{route('pessoa.create')}}"><i class="material-icons">add</i></a>
 				</div>
 			</div>
 

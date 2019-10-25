@@ -4,7 +4,7 @@
 
 <div class='container'>
         
-        <p class="flow-text">CAUUTELA DO EQUIPAMENTO <b>{{ $equipamento->nr_serie }}</b></p>
+        <p class="flow-text">CAUTELA DO <b>{{ $equipamento->marca_modelo }}</b></p>
 
         @include('_caminho')
 

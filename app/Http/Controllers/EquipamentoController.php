@@ -57,6 +57,7 @@ class EquipamentoController extends Controller
         $equipamento->marca_modelo = $request->input('marca_modelo');
         $equipamento->nr_serie = $request->input('nr_serie');
         $equipamento->obs = $request->input('obs');
+        $equipamento->st_cautelado = 0;
   
         
         if($equipamento->save())

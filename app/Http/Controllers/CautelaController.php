@@ -42,12 +42,7 @@ class CautelaController extends Controller
             ['url' => '','titulo' => 'Cautelar Equipamento'],
         ];
 
-        //Buscar a última cautela do Equipamento para saber se está com data de descautela = null
-        $equipamentos = Equipamento::with('cautelas')->get();
-
-        //$equipamentos = Equipamento::with('cautelas')->where('cautela', '=', 'null')->get();
-
-        //return $equipamentos;
+        $equipamentos = Equipamento::all();
 
         $pessoas = Pessoa::with('cargo')->orderBy('cargo_id', 'desc')->get();
 
@@ -80,6 +75,8 @@ class CautelaController extends Controller
         {
 
             $equipamento = Equipamento::find($cautela->equipamento_id);
+            $equipamento->st_cautelado = 1;
+            $equipamento->update();
 
             $cautela->vinculaEquipamento($equipamento);
             
@@ -152,12 +149,32 @@ class CautelaController extends Controller
         $hoje = date('Y-m-d H:i');
         
         $cautela = Cautela::find($id);
-       
         $cautela->dt_descautela = $hoje;
-
         //return $cautela;
         $cautela->update();
 
+        $equipamento = Equipamento::find($cautela->equipamento_id);
+        $equipamento->st_cautelado = 0;
+        $equipamento->update();
+
         return redirect()->route('cautela.index');
+    }
+
+    public function exibeFormCautelarEquipamento($equipamento_id)
+    {
+        $caminhos = [
+            ['url' => '/home','titulo' => 'Home'],
+            ['url' => '/home/cautela','titulo' => 'Cautela'],
+            ['url' => '','titulo' => 'Cautelar Equipamento'],
+        ];
+
+        $equipamentos = Equipamento::all();
+        $pessoas = Pessoa::with('cargo')->orderBy('cargo_id', 'desc')->get();
+        
+        $registro = new Equipamento();
+        $registro->equipamento_id = $equipamento_id;
+
+        return view ('cautela.adicionar',compact('caminhos','equipamentos','pessoas','registro'));
+
     }
 }

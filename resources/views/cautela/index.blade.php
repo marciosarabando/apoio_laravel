@@ -12,12 +12,14 @@
             <table>
                 <thead>
                     <tr>
-                        <td>Data da Cautela</td>
-                        
+
                         <td>Marca / Modelo</td>
+
                         <td>Nr Série</td>
-                        
+
                         <td>Cautelado para</td>
+                        
+                        <td>Data da Cautela</td>
                       
                         <td>Ação</td>
                     </tr>
@@ -26,17 +28,14 @@
                 <tbody>
                     @foreach($cautelas as $cautela)
                     <tr>
-                            <td>{{date("d/m/Y H:i", strtotime($cautela->dt_cautela))}}</td>
 
                             <td>{{$cautela->equipamento->marca_modelo}}</td>
-                          
+
                             <td>{{$cautela->equipamento->nr_serie}}</td>
-                            
-                            
-                            
+
                             <td>{{$cautela->pessoa->cargo->nome}} {{$cautela->pessoa->nome}}</td>
 
-                         
+                            <td>{{date("d/m/Y H:i", strtotime($cautela->dt_cautela))}}</td>                         
 
                             <td><a title="Abrir" class="btn green" href="{{ route('cautela.show',$cautela->id) }}">ABRIR</a></td>
                             

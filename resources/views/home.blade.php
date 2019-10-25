@@ -12,7 +12,7 @@
     <div class="row">
 
         <div class="col s12 m6">
-            <div class="card green">
+            <div class="card red">
                 <div class="card-content white-text">
                     <span class="card-title">CAUTELA</span>
                     <p>Controle de Cautela de Equipamentos</p>

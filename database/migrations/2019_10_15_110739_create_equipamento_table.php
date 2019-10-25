@@ -29,6 +29,7 @@ class CreateEquipamentoTable extends Migration
             $table->string('marca_modelo');
             $table->string('nr_serie')->unique();
             $table->string('obs')->nullable();
+            $table->integer('st_cautelado')->unsigned();
 
             $table->timestamps();
 

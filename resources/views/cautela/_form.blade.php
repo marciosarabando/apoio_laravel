@@ -2,11 +2,11 @@
 	<select name="equipamento_id" id="equipamento_id">
 		<option value='0'>EQUIPAMENTO:</option>
 		@foreach($equipamentos as $equipamento)
-			@if(isset($registro->equipamento_id) && $registro->equipamento_tipo_id == $equipamento->id)
+			@if(isset($registro->equipamento_id) && $registro->equipamento_id == $equipamento->id)
 				<option value='{{ $equipamento->id }}' selected>{{ $equipamento->marca_modelo }}</option>
 			@else
-				@if(count($equipamento->cautelas) == 0)
-				<option value='{{ $equipamento->id }}'>{{ $equipamento->marca_modelo }} - {{ $equipamento->nr_serie }}</option>
+				@if($equipamento->st_cautelado == 0)
+					<option value='{{ $equipamento->id }}'>{{ $equipamento->marca_modelo }} - {{ $equipamento->nr_serie }}</option>
 				@endif
 			@endif
 		@endforeach

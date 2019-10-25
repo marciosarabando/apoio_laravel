@@ -37,7 +37,9 @@
                                     {{ method_field('DELETE')}}
                                     {{ csrf_field() }}
                                     <button title="Deletar" class="btn red"><i class="material-icons">delete</i></button>
-                                    <a class="btn blue" href="{{route('cautela.create')}}"><i class="material-icons">library_add</i> CAUTELAR</a>
+                                    @if($equipamento->st_cautelado == 0)
+                                        <a class="btn blue" href="{{ route('cautela.abreform', $equipamento->id) }}"><i class="material-icons">swap_vertical_circle</i> CAUTELAR</a>
+                                    @endif
 
                                 </form></td>
                         <tr>

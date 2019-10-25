@@ -34,8 +34,7 @@ Route::group(['middleware' => 'auth', 'prefix' => 'home'], function () {
 
     Route::resource('cautela','CautelaController');
     Route::put('cautela/descautela/{id}',['as'=>'cautela.descautela','uses'=>'CautelaController@descautela']);
-
-    
+    Route::get('cautela/nova/{equipamento_id}', ['as'=>'cautela.abreform','uses'=>'CautelaController@exibeFormCautelarEquipamento']);
 
     Route::resource('pessoa','PessoaController');
 
