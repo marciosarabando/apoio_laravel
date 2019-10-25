@@ -3,7 +3,7 @@
       <ul class="right hide-on-med-and-down">
         
         @if (Auth::guest())
-          <li><a href="{{ url('/login') }}">LOGIN</a></li>
+          <li><a href="{{ url('/login') }}">ENTRAR</a></li>
           <li><a href="{{ url('/usuario/cadastrar') }}">CADASTRO</a></li>
         @else
 

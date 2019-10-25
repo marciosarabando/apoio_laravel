@@ -37,18 +37,9 @@
                             <td>{{$cautela->pessoa->cargo->nome}} {{$cautela->pessoa->nome}}</td>
 
                             <td>{{$cautela->obs}}</td>
-                           
+
+                            <td><a title="Abrir" class="btn blue" href="{{ route('cautela.show',$cautela->id) }}"><i class="material-icons">folder_open</i></a></td>
                             
-                            <td><form action="{{route('cautela.descautela', [$cautela->id])}}" method="post">
-                                    
-                                    <a title="Editar" class="btn orange" href="{{ route('cautela.edit',$cautela->id) }}"><i class="material-icons">mode_edit</i></a>
-
-                                    {{ method_field('PUT')}}
-                                    {{ csrf_field() }}
-                                    <button title="Descautelar" class="btn red">DESCAUTELAR</button>
-
-                                </form>
-                            </td>
                         <tr>
                     @endforeach
                 </tbody>
@@ -60,7 +51,7 @@
         <div class="row">
 		
 				<a class="btn blue" href="{{route('cautela.create')}}"><i class="material-icons">library_add</i> CAUTELAR EQUIPAMENTO</a>
-				<a title="Incluir Pessoa" class="btn blue" href="{{route('pessoa.create')}}"><i class="material-icons">account_box</i></a>
+				<a title="Incluir Pessoa" class="btn blue" href="{{route('pessoa.create')}}"><i class="material-icons">account_box</i> CADASTRAR PESSOA</a>
 	
 		</div>
 

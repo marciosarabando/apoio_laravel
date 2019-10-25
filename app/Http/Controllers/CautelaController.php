@@ -49,7 +49,7 @@ class CautelaController extends Controller
 
         //return $equipamentos;
 
-        $pessoas = Pessoa::all();
+        $pessoas = Pessoa::with('cargo')->orderBy('cargo_id', 'desc')->get();
 
         return view ('cautela.adicionar',compact('caminhos','equipamentos','pessoas'));
     }
@@ -98,7 +98,15 @@ class CautelaController extends Controller
      */
     public function show($id)
     {
-        //
+        $caminhos = [
+            ['url' => '/home','titulo' => 'Home'],
+            ['url' => '/home/cautela','titulo' => 'Cautela'],
+            ['url' => '','titulo' => 'Detalhes'],
+        ];
+
+        $cautela = Cautela::with('pessoa')->find($id);
+        $equipamento = Equipamento::find($cautela->equipamento_id);
+        return view ('cautela.show',compact('caminhos','cautela','equipamento'));
     }
 
     /**

@@ -21,12 +21,12 @@
 
 <div class="input-field">
 	<select name="pessoa_id" id="pessoa_id">
-		<option value='0'>PESSOA...</option>
+		<option value='0'>PARA:</option>
 		@foreach($pessoas as $pessoa)
 			@if(isset($registro->pessoa_id) && $registro->pessoa_id == $pessoa->id)
-				<option value='{{ $pessoa->id }}' selected>{{ $pessoa->nome }}</option>
+				<option value='{{ $pessoa->id }}' selected>{{ $pessoa->cargo->nome }} {{ $pessoa->nome }}</option>
 			@else
-				<option value='{{ $pessoa->id }}'>{{ $pessoa->nome }}</option>
+				<option value='{{ $pessoa->id }}'>{{ $pessoa->cargo->nome }} {{ $pessoa->nome }}</option>
 			@endif
 		@endforeach
 		
