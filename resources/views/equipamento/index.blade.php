@@ -38,7 +38,9 @@
                                     {{ csrf_field() }}
                                     <button title="Deletar" class="btn red"><i class="material-icons">delete</i></button>
                                     @if($equipamento->st_cautelado == 0)
-                                        <a class="btn blue" href="{{ route('cautela.abreform', $equipamento->id) }}"><i class="material-icons">swap_vertical_circle</i> CAUTELAR</a>
+                                        <a class="btn green" href="{{ route('cautela.abreform', $equipamento->id) }}"><i class="material-icons">swap_vertical_circle</i> CAUTELAR</a>
+                                    @else
+                                        <font color='blue'><b>CAUTELADO</b></font>
                                     @endif
 
                                 </form></td>
