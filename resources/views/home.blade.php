@@ -53,7 +53,7 @@
             <div class="card blue">
                 <div class="card-content white-text">
                     <span class="card-title">USUÁRIO</span>
-                    <p>Usuários do Sistema de Apoio</p>
+                    <p>Usuários do Sistema</p>
                 </div>
                 <div class="card-action">
                     <a href="{{route('pessoa.index')}}">Vizualizar</a>
