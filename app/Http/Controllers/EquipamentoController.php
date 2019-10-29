@@ -15,7 +15,7 @@ class EquipamentoController extends Controller
      */
     public function index()
     {
-        $equipamentos = Equipamento::all();
+        $equipamentos = Equipamento::paginate(5);
 
         $caminhos = [
             ['url' => '/home','titulo' => 'Home'],
@@ -51,12 +51,22 @@ class EquipamentoController extends Controller
      */
     public function store(Request $request)
     {
+
+        //validação dos Dados
+        $this->validate($request,[
+            'equipamento_tipo_id' => 'required|numeric',
+            'marca_modelo' => 'required|string|max:255',
+            'nr_serie' => 'required|string|max:255|unique:equipamentos',
+            'obs' => 'required|string|max:255',
+        ]);
+
+
         //Equipamento::create($request->all());
         $equipamento = new Equipamento();
         $equipamento->equipamento_tipo_id = $request->input('equipamento_tipo_id');
-        $equipamento->marca_modelo = $request->input('marca_modelo');
-        $equipamento->nr_serie = $request->input('nr_serie');
-        $equipamento->obs = $request->input('obs');
+        $equipamento->marca_modelo = mb_strtoupper($request->input('marca_modelo'),'UTF-8');
+        $equipamento->nr_serie = mb_strtoupper($request->input('nr_serie'),'UTF-8');
+        $equipamento->obs = mb_strtoupper($request->input('obs'),'UTF-8');
         $equipamento->st_cautelado = 0;
   
         

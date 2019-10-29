@@ -25,9 +25,12 @@
       </ul>
 
       <ul id="nav-mobile" class="sidenav">
-        <li><a href="#">Navbar Link</a></li>
+        <li><a href="{{ url('/home') }}">HOME</a></li>
+        <li><a href="{{ url('/home/cautela') }}">CAUTELA</a></li>
+        <li><a href="{{ url('/home/equipamento') }}">EQUIPAMENTO</a></li>
+        <li><a href="{{ url('/home/pessoa') }}">PESSOA</a></li>
       </ul>
-      <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+      <a href="/home" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">Menu</i></a>
     </div>
   </nav>
 

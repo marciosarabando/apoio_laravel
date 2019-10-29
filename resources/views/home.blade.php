@@ -15,7 +15,7 @@
             <div class="card red">
                 <div class="card-content white-text">
                     <span class="card-title">CAUTELA</span>
-                    <p>Controle de Cautela de Equipamentos</p>
+                    <p>Cautela de Equipamentos</p>
                 </div>
                 <div class="card-action">
                     <a href="{{route('cautela.index')}}">Vizualizar</a>

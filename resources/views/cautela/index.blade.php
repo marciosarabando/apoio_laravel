@@ -9,7 +9,7 @@
         @include('_caminho')
 
         <div class='row'>
-            <table>
+            <table class="responsive-table">
                 <thead>
                     <tr>
 

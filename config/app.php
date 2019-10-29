@@ -12,7 +12,7 @@ return [
     | any other location as required by the application or its packages.
     */
 
-    'name' => env('APP_NAME', 'Laravel'),
+    'name' => env('APP_NAME', 'Apoio/SFPC'),
     'logoSite' => 'APOIO SFPC/2',
     'corSite' => 'green darken-4',
     'descricaoSite' => 'Sistema de Apoio de Informática do SFPC/2',
