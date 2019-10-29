@@ -53,6 +53,13 @@ class PessoaController extends Controller
     {
         //Pessoa::create($request->all());
 
+        //validação dos Dados
+        $this->validate($request,[
+            'cargo_id' => 'required|numeric',
+            'nome' => 'required|string|max:255|unique:pessoas',
+            'secao' => 'required|string|max:255',
+        ]);
+
         $pessoa = new Pessoa();
         $pessoa->cargo_id = mb_strtoupper($request->input('cargo_id'),'UTF-8');
         $pessoa->nome = mb_strtoupper($request->input('nome'),'UTF-8');
@@ -120,5 +127,23 @@ class PessoaController extends Controller
     {
         Pessoa::find($id)->delete();
         return redirect()->route('pessoa.index');
+    }
+
+    public function buscar(Request $request)
+    {
+        $nome = mb_strtoupper($request->input('buscar_nome'),'UTF-8');
+        
+        $registro = new Pessoa;
+        $registro->nome = $nome;
+
+        $pessoas = Pessoa::where('nome','LIKE','%'.$nome.'%')->with('cargo')->orderBy('cargo_id', 'desc')->paginate(5);
+        
+        $caminhos = [
+            ['url' => '/home','titulo' => 'Home'],
+            ['url' => '/home/pessoa','titulo' => 'Pessoas'],
+        ];
+        
+        return view ('pessoa.index', compact('caminhos','pessoas','registro'));
+
     }
 }

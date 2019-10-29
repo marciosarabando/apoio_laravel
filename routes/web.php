@@ -38,5 +38,7 @@ Route::group(['middleware' => 'auth', 'prefix' => 'home'], function () {
 
     Route::resource('pessoa','PessoaController');
 
+    Route::post('pessoa/buscar', ['as'=>'pessoa.buscar','uses'=>'PessoaController@buscar']);
+
 
 });

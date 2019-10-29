@@ -7,6 +7,30 @@
     <p class="flow-text">Cadastro de Pessoas</p>
 
         @include('_caminho')
+
+        <div class='row'>
+            <div class="col l6">
+
+            </div>
+            <div class="col l6">
+                    
+                     
+                    <form action="{{ route('pessoa.buscar') }}" method="post">
+                    {{ csrf_field() }}
+                        <div class="col l11">
+                            <div class="input-field">
+                                <input type="text" name="buscar_nome" class="upper validade" value="{{ isset($registro->nome) ? $registro->nome : '' }}">
+                                <label>Localizar por Nome</label>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="col l1">
+                            <button class="btn blue"><i class="material-icons">find_in_page</i></button>
+                        </div>
+                    </form>
+            </div>
+
+        </div>
   
         <div class='row'>
             <table class="responsive-table">
