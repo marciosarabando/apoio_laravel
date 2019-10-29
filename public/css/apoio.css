@@ -1,3 +1,13 @@
 .logo {
     opacity : 0.4;
   }
+
+.upper
+{
+  text-transform: uppercase;
+}
+
+.lower
+{
+  text-transform: lowercase;
+}

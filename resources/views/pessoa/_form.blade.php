@@ -18,12 +18,12 @@
 </div>
 
 <div class="input-field">
-	<input type="text" name="nome" class="validade" value="{{ isset($registro->nome) ? $registro->nome : '' }}">
+	<input type="text" name="nome" class="upper validade" value="{{ isset($registro->nome) ? $registro->nome : '' }}">
 	<label>NOME</label>
 </div>
 
 <div class="input-field">
-	<input type="text" name="secao" class="validade" value="{{ isset($registro->secao) ? $registro->secao : '' }}">
+	<input type="text" name="secao" class="upper validade" value="{{ isset($registro->secao) ? $registro->secao : '' }}">
 	<label>SEÇÃO</label>
 </div>
 
