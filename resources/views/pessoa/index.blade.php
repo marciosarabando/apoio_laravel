@@ -36,7 +36,7 @@
                                     {{ method_field('DELETE')}}
                                     {{ csrf_field() }}
                                     <button title="Deletar" class="btn red"><i class="material-icons">delete</i></button>
-
+                                    <a class="btn green" href="{{ route('cautela.create') }}"><i class="material-icons">swap_vertical_circle</i></a>
                                 </form>
                             </td>
                         <tr>
@@ -44,6 +44,8 @@
                 </tbody>
 
             </table>
+            <!-- Sistema de Paginação Simples do Laravel-->
+            {{ $pessoas->links() }}
         
         </div>
 

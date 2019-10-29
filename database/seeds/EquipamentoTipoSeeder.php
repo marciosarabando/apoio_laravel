@@ -23,5 +23,15 @@ class EquipamentoTipoSeeder extends Seeder
             'descricao' => 'NOTEBOOK'
         ]);
 
+        $p1 = TipoEquipamento::firstOrCreate([
+            'nome' => 'IMPRESSORA',
+            'descricao' => 'NOTEBOOK'
+        ]);
+
+        $p1 = TipoEquipamento::firstOrCreate([
+            'nome' => 'SCANNER',
+            'descricao' => 'SCANNER'
+        ]);
+
     }
 }

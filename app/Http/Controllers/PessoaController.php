@@ -15,7 +15,7 @@ class PessoaController extends Controller
      */
     public function index()
     {
-        $pessoas = Pessoa::all();
+        $pessoas = Pessoa::with('cargo')->orderBy('cargo_id', 'desc')->paginate(5);
 
         $caminhos = [
             ['url' => '/home','titulo' => 'Home'],
@@ -51,9 +51,19 @@ class PessoaController extends Controller
      */
     public function store(Request $request)
     {
-        Pessoa::create($request->all());
-  
-        return redirect()->route('pessoa.index');
+        //Pessoa::create($request->all());
+
+        $pessoa = new Pessoa();
+        $pessoa->cargo_id = mb_strtoupper($request->input('cargo_id'),'UTF-8');
+        $pessoa->nome = mb_strtoupper($request->input('nome'),'UTF-8');
+        $pessoa->secao = mb_strtoupper($request->input('secao'),'UTF-8');
+        $pessoa->obs = mb_strtoupper($request->input('obs'),'UTF-8');
+
+        if($pessoa->save())
+        {
+            return redirect()->route('pessoa.index')->with('success','Pessoa Cadastrada com Sucesso!!!');
+        }
+        
         
     }
 

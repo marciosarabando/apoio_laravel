@@ -23,6 +23,11 @@ class Cautela extends Model
         return $this->belongsTo('App\Pessoa');
     }
 
+    public function user()
+    {
+        return $this->belongsTo('App\User');
+    }
+
     public function equipamentos()
     {
         return $this->belongsToMany(Equipamento::class);

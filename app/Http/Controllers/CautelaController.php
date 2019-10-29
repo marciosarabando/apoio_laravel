@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Cautela;
 use App\Equipamento;
 use App\Pessoa;
+use Illuminate\Support\Facades\Auth;
 
 class CautelaController extends Controller
 {
@@ -68,6 +69,7 @@ class CautelaController extends Controller
         $cautela->dt_cautela = $hoje;
         $cautela->dt_descautela = null;
         $cautela->obs = $request->input('obs');
+        $cautela->user_id = Auth::user()->id;
 
         
 
@@ -75,7 +77,7 @@ class CautelaController extends Controller
         {
 
             $equipamento = Equipamento::find($cautela->equipamento_id);
-            $equipamento->st_cautelado = 1;
+            $equipamento->equipamento_status_id = 2;
             $equipamento->update();
 
             $cautela->vinculaEquipamento($equipamento);
@@ -154,7 +156,7 @@ class CautelaController extends Controller
         $cautela->update();
 
         $equipamento = Equipamento::find($cautela->equipamento_id);
-        $equipamento->st_cautelado = 0;
+        $equipamento->equipamento_status_id = 1;
         $equipamento->update();
 
         return redirect()->route('cautela.index');

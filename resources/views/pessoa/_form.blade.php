@@ -28,6 +28,6 @@
 </div>
 
 <div class="input-field">
-	<input type="text" name="obs" class="validade" value="{{ isset($registro->obs) ? $registro->obs : '' }}">
+	<input type="text" name="obs" class="upper validade" value="{{ isset($registro->obs) ? $registro->obs : '' }}">
 	<label>Observação</label>
 </div>

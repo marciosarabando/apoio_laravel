@@ -6,6 +6,12 @@
     <p class="flow-text">Adicionar Pessoa</p>
 
 	@include('_caminho')
+
+	@if($message = Session::get('success'))
+        <a class="flow-text">
+            {{$message}}
+		</a>
+	@endif
 	
 	<div class="row">
 		<form action="{{ route('pessoa.store') }}" method="post">

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Equipamento;
 use App\TipoEquipamento;
+use Illuminate\Support\Facades\Auth;
 
 class EquipamentoController extends Controller
 {
@@ -57,7 +58,6 @@ class EquipamentoController extends Controller
             'equipamento_tipo_id' => 'required|numeric',
             'marca_modelo' => 'required|string|max:255',
             'nr_serie' => 'required|string|max:255|unique:equipamentos',
-            'obs' => 'required|string|max:255',
         ]);
 
 
@@ -67,9 +67,9 @@ class EquipamentoController extends Controller
         $equipamento->marca_modelo = mb_strtoupper($request->input('marca_modelo'),'UTF-8');
         $equipamento->nr_serie = mb_strtoupper($request->input('nr_serie'),'UTF-8');
         $equipamento->obs = mb_strtoupper($request->input('obs'),'UTF-8');
-        $equipamento->st_cautelado = 0;
+        $equipamento->equipamento_status_id = 1;
+        $equipamento->user_id = Auth::user()->id;
   
-        
         if($equipamento->save())
         {
             return redirect()->route('equipamento.index');

@@ -17,6 +17,6 @@ class DatabaseSeeder extends Seeder
         $this->call(PermissaoSeeder::class);
         $this->call(SecaoSeeder::class);
         $this->call(EquipamentoTipoSeeder::class);
-        
+        $this->call(EquipamentoStatusSeeder::class);    
     }
 }

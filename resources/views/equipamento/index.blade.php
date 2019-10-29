@@ -32,11 +32,15 @@
                             <td>{{$equipamento->marca_modelo}}</td>
                             <td>{{$equipamento->nr_serie}}</td>
                             <td>
-                                @if($equipamento->st_cautelado == 0)
-                                    <font color='green'><b>DISPONÍVEL</b></font>
+                                @if($equipamento->equipamento_status_id == 1)
+                                    <font color='green'><b>
                                 @else
-                                    <font color='red'><b>CAUTELADO</b></font>
+                                    <font color='red'><b>
                                 @endif
+                                    {{ $equipamento->equipamento_status->descricao }}
+                                
+                                </b></font>
+
                             </td>
                             
                             <td>
@@ -45,7 +49,7 @@
                                         {{ method_field('DELETE')}}
                                         {{ csrf_field() }}
                                         <button title="Deletar" class="btn red"><i class="material-icons">delete</i></button>
-                                        @if($equipamento->st_cautelado == 0)
+                                        @if($equipamento->equipamento_status_id == 1)
                                             <a class="btn green" href="{{ route('cautela.abreform', $equipamento->id) }}"><i class="material-icons">swap_vertical_circle</i></a>
                                         @endif
                                     </form>

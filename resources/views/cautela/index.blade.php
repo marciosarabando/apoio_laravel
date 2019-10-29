@@ -13,6 +13,8 @@
                 <thead>
                     <tr>
 
+                        <td>Id</td>
+
                         <td>Marca / Modelo</td>
 
                         <td>Nr Série</td>
@@ -28,6 +30,7 @@
                 <tbody>
                     @foreach($cautelas as $cautela)
                     <tr>
+                            <td>{{$cautela->id}}</td>
 
                             <td>{{$cautela->equipamento->marca_modelo}}</td>
 

@@ -23,10 +23,13 @@ class CreateCautelaTable extends Migration
 
             $table->string('obs')->nullable();
 
+            $table->integer('user_id')->unsigned();
+
             $table->timestamps();
 
             $table->foreign('equipamento_id')->references('id')->on('equipamentos')->onDelete('cascade');
             $table->foreign('pessoa_id')->references('id')->on('pessoas')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
 
         //Tabela de Relacionamento Cautelas com Equipamentos
