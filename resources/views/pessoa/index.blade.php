@@ -12,9 +12,7 @@
             <div class="col l6">
 
             </div>
-            <div class="col l6">
-                    
-                     
+            <div class="col l6">      
                     <form action="{{ route('pessoa.buscar') }}" method="post">
                     {{ csrf_field() }}
                         <div class="col l11">
@@ -29,7 +27,6 @@
                         </div>
                     </form>
             </div>
-
         </div>
   
         <div class='row'>

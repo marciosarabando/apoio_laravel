@@ -16,13 +16,13 @@ class EquipamentoController extends Controller
      */
     public function index()
     {
-        $equipamentos = Equipamento::paginate(5);
+        $equipamentos = Equipamento::with('cautelas')->paginate(5);
 
         $caminhos = [
             ['url' => '/home','titulo' => 'Home'],
             ['url' => '','titulo' => 'Equipamentos'],
         ];
-        
+        //return $equipamentos;
         return view ('equipamento.index', compact('caminhos','equipamentos'));
     }
 
@@ -84,7 +84,14 @@ class EquipamentoController extends Controller
      */
     public function show($id)
     {
-        //
+        $caminhos = [
+            ['url' => '/home','titulo' => 'Home'],
+            ['url' => '/home/equipamento','titulo' => 'Equipamentos'],
+            ['url' => '','titulo' => 'Detalhes'],
+        ];
+
+        $equipamento = Equipamento::with('cautelas')->find($id);
+        return view ('equipamento.show',compact('equipamento','caminhos'));
     }
 
     /**
@@ -131,4 +138,24 @@ class EquipamentoController extends Controller
         Equipamento::find($id)->delete();
         return redirect()->route('equipamento.index');
     }
+
+    public function buscar(Request $request)
+    {
+        $nr_serie = mb_strtoupper($request->input('buscar_nr_serie'),'UTF-8');
+        
+        $registro = new Equipamento;
+        $registro->nr_serie = $nr_serie;
+
+        $equipamentos = Equipamento::where('nr_serie','LIKE','%'.$nr_serie.'%')->paginate(5);
+        
+        $caminhos = [
+            ['url' => '/home','titulo' => 'Home'],
+            ['url' => '/home/equipamento','titulo' => 'Equipamentos'],
+        ];
+        
+        return view ('equipamento.index', compact('caminhos','equipamentos','registro'));
+
+    }
+
+
 }
