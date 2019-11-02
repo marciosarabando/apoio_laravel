@@ -179,4 +179,8 @@ class CautelaController extends Controller
         return view ('cautela.adicionar',compact('caminhos','equipamentos','pessoas','registro'));
 
     }
+
+    public function geraPDFCautela($id){
+        return view ('cautela.pdf');
+    }
 }

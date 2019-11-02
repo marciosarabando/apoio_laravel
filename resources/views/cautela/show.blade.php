@@ -38,6 +38,7 @@
             {{ method_field('PUT')}}
             {{ csrf_field() }}
             <button title="Descautelar" class="btn red">DESCAUTELAR</button>
+            <a title="Criar documento" class="btn blue" href="{{route('cautela.pdf', [$cautela->id])}}  ">GERAR DOCUMENTO</a>
         </form>
 
         
