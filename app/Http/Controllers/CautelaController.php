@@ -85,7 +85,7 @@ class CautelaController extends Controller
             //return $cautela;
             
             //return redirect('produtos/create')->with('success','Produto Cadastrado com Sucesso!!!');
-            return redirect()->route('cautela.index');
+            return redirect()->route('cautela.termo', $cautela->id);
         }
     }
 
@@ -186,5 +186,13 @@ class CautelaController extends Controller
         $equipamento = Equipamento::with('equipamento_tipo')->find($cautela->equipamento_id);
         //return $equipamento;
         return view ('cautela.termo',compact('cautela','pessoa','equipamento'));
+    }
+
+    public function salvarTermo(Request $request, $id){
+        $cautela = Cautela::find($id);
+        $cautela->assinatura = $request->assinatura;
+        $cautela->update();
+        //geraTermoCautela($id); 
+        return redirect()->route('cautela.termo', $id);
     }
 }

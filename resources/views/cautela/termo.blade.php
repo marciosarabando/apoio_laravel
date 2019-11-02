@@ -21,113 +21,137 @@
     <script>
         window.onload = function () {
             //todo conteúdo ficará aqui
-            
-            //Codigo para desenhar com o mouse
-            /*
-            var Draw = {
-            obj : document.getElementById('canvas'),
-            contexto : document.getElementById('canvas').getContext("2d"),
-            _init:function(){
-                Draw.obj.onmousemove = Draw._over;
-                Draw.obj.onmousedown = Draw._ativa;
-                Draw.obj.onmouseup = Draw._inativa;
-                Draw.obj.onselectstart = function () { return false; };
-            },
-            _over:function(e){
-                if(!Draw.ativo) return;
-                console.log(e);
-                Draw.contexto.beginPath();
-                Draw.contexto.lineTo(Draw.x,Draw.y);
-                Draw.contexto.lineTo(e.layerX, e.layerY);
-                Draw.contexto.stroke();
-                Draw.contexto.closePath();
-                Draw.x = e.layerX;
-                Draw.y = e.layerY;
-            },
-            _ativa:function(e){
-                Draw.ativo = true;
-                Draw.x = e.layerX;
-                Draw.y = e.layerY;
-            },
-            _inativa:function(){
-                Draw.ativo = false;
-            }
-        }
-        Draw._init();
-        */
-        
 
-        //Código para desenhar no Canvas com o Touch
-        
-        var Draw = {
-            obj : document.getElementById('canvas'),
-            contexto : document.getElementById('canvas').getContext("2d"),
-            _init:function(){
+        //TENTATIVA DE 08/11/2019
+        //Artigo: http://bencentra.com/code/2014/12/05/html5-canvas-touch-events.html
 
-                Draw.obj.addEventListener('touchstart', function(event) {
-                    Draw._ativa(event.touches);
-                }, false);
-                Draw.obj.addEventListener('touchmove', function(event) {
-                    Draw._over(event.touches);
-                }, false);
-                Draw.obj.addEventListener('touchend', function(event) {
-                    Draw._inativa(event.touches);
-                }, false);
-            },
-            _over:function(e){
-                if(!Draw.ativo) return;
-                //console.log(e);
-                var touch = event.targetTouches[0];
-                console.log(touch);
-                Draw.contexto.beginPath();
-                Draw.contexto.lineTo(Draw.x,Draw.y);
-                Draw.contexto.lineTo(touch.pageX, touch.pageY);
-                Draw.contexto.stroke();
-                Draw.contexto.closePath();
-                Draw.x = (touch.pageX);
-                Draw.y = (touch.pageY);
-            },
-            _ativa:function(e){
-                console.log('ativo');
-                console.log(event);
-                var touch = event.targetTouches[0];
-                Draw.ativo = true;
-                Draw.x = (touch.pageX);
-                Draw.y = (touch.pageY);
-            },
-            _inativa:function(){
-                Draw.ativo = false;
-                console.log('nao ativo');
-            }
-        }
-        Draw._init();
-        
-        //Previne o Movimento da Tela ao tocar o componente
-        var canvas = document.getElementById('canvas');
-        canvas.addEventListener('touchmove', function(event) {
-        event.preventDefault();
+        //var canvas = document.getElementById('canvas');
+
+        // Set up the canvas
+        var canvas = document.getElementById("canvas");
+        var ctx = canvas.getContext("2d");
+        ctx.strokeStyle = "#222222";
+        ctx.lineWith = 2;
+
+        // Set up mouse events for drawing
+        var drawing = false;
+        var mousePos = { x:0, y:0 };
+        var lastPos = mousePos;
+        canvas.addEventListener("mousedown", function (e) {
+                drawing = true;
+        lastPos = getMousePos(canvas, e);
+        }, false);
+        canvas.addEventListener("mouseup", function (e) {
+        drawing = false;
+        }, false);
+        canvas.addEventListener("mousemove", function (e) {
+        mousePos = getMousePos(canvas, e);
         }, false);
 
-        /*
-        canvas.addEventListener('touchmove', function(event) {
-        renderTouches(event.touches);
-        }, false);
-
-        var contexto = document.getElementById('canvas').getContext("2d");
-
-        function renderTouches(e)
-        {
-            //console.log(e[0].clientX);
-            //contexto.beginPath();
-            //contexto.lineTo(e[0].clientX,e[0].clientY);
-            //contexto.stroke();
-            //contexto.closePath();
+        // Get the position of the mouse relative to the canvas
+        function getMousePos(canvasDom, mouseEvent) {
+        var rect = canvasDom.getBoundingClientRect();
+        return {
+            x: mouseEvent.clientX - rect.left,
+            y: mouseEvent.clientY - rect.top
+        };
         }
-   
-        */
+
+        // Get a regular interval for drawing to the screen
+        window.requestAnimFrame = (function (callback) {
+        return window.requestAnimationFrame || 
+           window.webkitRequestAnimationFrame ||
+           window.mozRequestAnimationFrame ||
+           window.oRequestAnimationFrame ||
+           window.msRequestAnimaitonFrame ||
+           function (callback) {
+        window.setTimeout(callback, 1000/60);
+           };
+        })();
+
+        // Draw to the canvas
+        function renderCanvas() {
+        if (drawing) {
+            ctx.moveTo(lastPos.x, lastPos.y);
+            ctx.lineTo(mousePos.x, mousePos.y);
+            ctx.stroke();
+            lastPos = mousePos;
+        }
+        }
+
+        // Allow for animation
+        (function drawLoop () {
+        requestAnimFrame(drawLoop);
+        renderCanvas();
+        })();
 
         
+        // Set up touch events for mobile, etc
+        canvas.addEventListener("touchstart", function (e) {
+                mousePos = getTouchPos(canvas, e);
+        var touch = e.touches[0];
+        var mouseEvent = new MouseEvent("mousedown", {
+            clientX: touch.clientX,
+            clientY: touch.clientY
+        });
+        canvas.dispatchEvent(mouseEvent);
+        }, false);
+        canvas.addEventListener("touchend", function (e) {
+        var mouseEvent = new MouseEvent("mouseup", {});
+        canvas.dispatchEvent(mouseEvent);
+        }, false);
+        canvas.addEventListener("touchmove", function (e) {
+            //console.log('touchmove');
+        var touch = e.touches[0];
+        var mouseEvent = new MouseEvent("mousemove", {
+            clientX: touch.clientX,
+            clientY: touch.clientY
+        });
+        canvas.dispatchEvent(mouseEvent);
+        }, false);
 
+        // Get the position of a touch relative to the canvas
+        function getTouchPos(canvasDom, touchEvent) {
+            var rect = canvasDom.getBoundingClientRect();
+            return {
+                x: touchEvent.touches[0].clientX - rect.left,
+                y: touchEvent.touches[0].clientY - rect.top
+            };
+        }
+
+        // Prevent scrolling when touching the canvas
+        canvas.addEventListener("touchstart", function (e) {
+        if (e.target == canvas) {
+            e.preventDefault();
+        }
+        }, false);
+        canvas.addEventListener("touchend", function (e) {
+        if (e.target == canvas) {
+            e.preventDefault();
+        }
+        }, false);
+        canvas.addEventListener("touchmove", function (e) {
+        if (e.target == canvas) {
+            e.preventDefault();
+        }
+        }, false);
+
+    }
+
+    function limpa_assinatura()
+    {
+        clearCanvas();
+    }
+
+    function clearCanvas() {
+        canvas = document.getElementById("canvas");
+        canvas.width = canvas.width;
+    }
+
+    function salva_assinatura(){
+        canvas = document.getElementById("canvas");
+        var dataUrl = canvas.toDataURL();
+        document.getElementById("txt_assinatura").value =  dataUrl;
     }
 
     </script>
@@ -185,20 +209,45 @@
         </div>
         <br><br><br><br>
         Quartel General do Ibirapuera, ___ de ________________ de 2019.
+        <br><br>
+        <img src="{{ $cautela->assinatura }}" alt="">
     </center>
 
     <br>
 
     <center>
-        <canvas style="background:beige" id="canvas" class="canvas" width="600" height="100">
-            Seu browser não suporta canvas, é hora de trocar!.
-        </canvas>
-        <br>
+
+        @if($cautela->assinatura == "")
+
+            <canvas style="background:beige" id="canvas" class="canvas" width="600" height="100">
+                Seu browser não suporta canvas, é hora de trocar!.
+            </canvas>
+            <br>
+        @else
+        
+            <canvas id="canvas" hidden>
+                Seu browser não suporta canvas, é hora de trocar!.
+            </canvas>
+        
+        @endif
+        
+    
         <b>{{ $pessoa->nome }} - {{ $pessoa->cargo->nome }}</b>
-
         <br><br>
+        
+        @if($cautela->assinatura == null)
 
-        <a class="btn green">GERAR TERMO</a>
+            <form action="{{route('cautela.salvartermo', [$cautela->id])}}" method="post">
+                {{ method_field('PUT')}}
+                {{ csrf_field() }}
+                <input type="hidden" id="txt_assinatura" name="assinatura">
+                <a class="btn red" onclick='limpa_assinatura()'>LIMPAR ASSINATURA</a> 
+                <button class="btn green" onclick='salva_assinatura()'>FINALIZAR ASSINATURA</button>
+            </form>
+        @else
+            <a class="btn blue" href="{{ route('cautela.show',$cautela->id) }}">FECHAR</a> 
+        @endif
+        
 
     </center>
 

@@ -22,7 +22,7 @@ class CreateCautelaTable extends Migration
             $table->dateTime('dt_descautela')->nullable();
 
             $table->string('obs')->nullable();
-
+          
             $table->integer('user_id')->unsigned();
 
             $table->timestamps();
