@@ -180,7 +180,11 @@ class CautelaController extends Controller
 
     }
 
-    public function geraPDFCautela($id){
-        return view ('cautela.pdf');
+    public function geraTermoCautela($id){
+        $cautela = Cautela::with('equipamentos')->find($id);
+        $pessoa = Pessoa::with('cargo')->find($cautela->pessoa_id);
+        $equipamento = Equipamento::with('equipamento_tipo')->find($cautela->equipamento_id);
+        //return $equipamento;
+        return view ('cautela.termo',compact('cautela','pessoa','equipamento'));
     }
 }

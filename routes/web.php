@@ -35,7 +35,7 @@ Route::group(['middleware' => 'auth', 'prefix' => 'home'], function () {
     Route::resource('cautela','CautelaController');
     Route::put('cautela/descautela/{id}',['as'=>'cautela.descautela','uses'=>'CautelaController@descautela']);
     Route::get('cautela/nova/{equipamento_id}', ['as'=>'cautela.abreform','uses'=>'CautelaController@exibeFormCautelarEquipamento']);
-    Route::get('cautela/pdf/{equipamento_id}', ['as'=>'cautela.pdf','uses'=>'CautelaController@geraPDFCautela']);
+    Route::get('cautela/termo/{equipamento_id}', ['as'=>'cautela.termo','uses'=>'CautelaController@geraTermoCautela']);
 
     Route::resource('pessoa','PessoaController');
 
