@@ -18,6 +18,11 @@
         </div>
 
         <div class="row">
+            <div class="col s3"><b>CAUTELADO EM:</b></div>
+            <div class="col s4">{{date("d/m/Y H:i", strtotime($cautela->dt_cautela))}}</div>
+        </div>
+
+        <div class="row">
             <div class="col s3"><b>CAUTELADO PARA:</b></div>
             <div class="col s4">{{ $cautela->pessoa->cargo->nome }} {{ $cautela->pessoa->nome }}</div>
         </div>

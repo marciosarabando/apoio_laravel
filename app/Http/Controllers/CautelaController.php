@@ -19,7 +19,7 @@ class CautelaController extends Controller
     {
         $caminhos = [
             ['url' => '/home','titulo' => 'Home'],
-            ['url' => '','titulo' => 'Cautela'],
+            ['url' => '/home/cautela','titulo' => 'Cautela'],
         ];
 
         //$cautelas = Cautela::all();
@@ -194,5 +194,38 @@ class CautelaController extends Controller
         $cautela->update();
         //geraTermoCautela($id); 
         return redirect()->route('cautela.termo', $id);
+    }
+
+    public function buscarPorNome(Request $request)
+    {
+        $nome = mb_strtoupper($request->input('buscar_nome'),'UTF-8');
+        
+        $pessoas = Pessoa::where('nome','LIKE','%'.$nome.'%')->get();
+        
+        $registro = new Pessoa;
+        $registro->nome = $nome;
+        //return $registro;
+        $x = 0;
+        
+        $ids_pessoas[0] = 0;
+
+        foreach($pessoas as $umapessoa)
+        {
+            $ids_pessoas[$x] = $umapessoa->id;
+            //$ids_pessoas .= ",";
+            $x++;
+        }
+
+        //$ids_pessoas = "1, 2";
+        //return $ids_pessoas;
+
+        $cautelas = Cautela::whereIn('pessoa_id', $ids_pessoas)->paginate(5);
+        
+        $caminhos = [
+            ['url' => '/home','titulo' => 'Home'],
+            ['url' => '/home/cautela','titulo' => 'Cautela'],
+        ];
+        
+        return view ('cautela.index', compact('caminhos','cautelas','registro'));
     }
 }

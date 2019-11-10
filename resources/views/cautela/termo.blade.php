@@ -207,8 +207,38 @@
                 </tr>
             </table>
         </div>
+
+        <!-- exibe mes por extenso -->
+       
+            @if(date("m", strtotime($cautela->dt_cautela)) == "1")
+                <?php $mes = 'janeiro'?>
+            @elseif(date("m", strtotime($cautela->dt_cautela))== 2)
+                <?php $mes = 'fevereiro'?>
+            @elseif(date("m", strtotime($cautela->dt_cautela)) == 3)
+                <?php $mes = 'março'?>
+            @elseif(date("m", strtotime($cautela->dt_cautela)) == 4)
+                <?php $mes = 'abril'?>
+            @elseif(date("m", strtotime($cautela->dt_cautela)) == 5)
+                <?php $mes = 'maio'?>
+            @elseif(date("m", strtotime($cautela->dt_cautela)) == 6)
+                <?php $mes = 'junho'?>
+            @elseif(date("m", strtotime($cautela->dt_cautela)) == 7)
+                <?php $mes = 'julho'?>
+            @elseif(date("m", strtotime($cautela->dt_cautela)) == 8)
+                <?php $mes = 'agosto'?>
+            @elseif(date("m", strtotime($cautela->dt_cautela)) == 9)
+                <?php $mes = 'setembro'?>
+            @elseif(date("m", strtotime($cautela->dt_cautela)) == 10)
+                <?php $mes = 'outubro'?>
+            @elseif(date("m", strtotime($cautela->dt_cautela)) == 11)
+                <?php $mes = 'novembro' ?>
+            @elseif(date("m", strtotime($cautela->dt_cautela)) == 12)
+                <?php $mes = 'dezembro'?>
+            @endif
+        
+        
         <br><br><br><br>
-        Quartel General do Ibirapuera, ___ de ________________ de 2019.
+        Quartel General do Ibirapuera, {{date("d", strtotime($cautela->dt_cautela))}} de {{ $mes }} de {{date("Y", strtotime($cautela->dt_cautela))}}.
         <br><br>
         <img src="{{ $cautela->assinatura }}" alt="">
     </center>

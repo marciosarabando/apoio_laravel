@@ -9,6 +9,27 @@
         @include('_caminho')
 
         <div class='row'>
+            <div class="col l6">
+
+            </div>
+            <div class="col l6">      
+                    <form action="{{ route('cautela.buscar') }}" method="post">
+                    {{ csrf_field() }}
+                        <div class="col l11">
+                            <div class="input-field">
+                                <input type="text" name="buscar_nome" class="upper validade" value="{{ isset($registro->nome) ? $registro->nome : '' }}">
+                                <label>Localizar por Nome</label>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="col l1">
+                            <button class="btn blue"><i class="material-icons">find_in_page</i></button>
+                        </div>
+                    </form>
+            </div>
+        </div>
+
+        <div class='row'>
             <table class="responsive-table">
                 <thead>
                     <tr>
@@ -23,7 +44,7 @@
                         
                         <td>Data da Cautela</td>
                       
-                        <td>Ação</td>
+                        <td>Ações</td>
                     </tr>
                 </thead>
 
@@ -40,7 +61,10 @@
 
                             <td>{{date("d/m/Y H:i", strtotime($cautela->dt_cautela))}}</td>                         
 
-                            <td><a title="Abrir" class="btn green" href="{{ route('cautela.show',$cautela->id) }}">ABRIR</a></td>
+                            <td>
+                                <a title="Abrir" class="btn blue" href="{{ route('cautela.show',$cautela->id) }}">DETALHES</a>
+                                <a title="Termo" class="btn orange" href="{{ route('cautela.termo',$cautela->id) }}">TERMO</a>                            
+                            </td>
                             
                         <tr>
                     @endforeach
@@ -52,7 +76,7 @@
 
         <div class="row">
 		
-				<a class="btn blue" href="{{route('cautela.create')}}"><i class="material-icons">library_add</i> CAUTELAR EQUIPAMENTO</a>
+				<a class="btn blue" href="{{route('cautela.create')}}"><i class="material-icons">library_add</i> CRIAR CAUTELA</a>
 				
 	
 		</div>
