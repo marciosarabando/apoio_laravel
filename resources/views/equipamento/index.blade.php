@@ -39,6 +39,7 @@
                         <td>Tipo</td>
                         <td>Marca / Modelo</td>
                         <td>Nr Série</td>
+                        <td>Nr Patrimônio</td>
                         <td>Situação</td>
                         <td>Ação</td>
                     </tr>
@@ -53,6 +54,7 @@
                             
                             <td>{{$equipamento->marca_modelo}}</td>
                             <td>{{$equipamento->nr_serie}}</td>
+                            <td>{{$equipamento->nr_patrimonio}}</td>
                             <td>
                                 @if($equipamento->equipamento_status_id == 1)
                                     <font color='green'><b>
