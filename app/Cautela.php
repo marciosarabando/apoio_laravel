@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Cautela extends Model
 {
     protected $table = 'cautelas';
-    protected $fillable = ['equipamento_id','pessoa_id','dt_cautela','dt_descautela','obs','assinatura'];
+    protected $fillable = ['equipamento_id','pessoa_id','dt_cautela','dt_descautela','obs_cautela','obs_descautela','assinatura_cautela', 'user_descautela_id', 'assinatura_descautela', 'obs_descautela'];
 
     //Equipamento
     //Relacionamento muitos para 1

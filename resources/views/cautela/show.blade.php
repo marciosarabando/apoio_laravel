@@ -33,20 +33,19 @@
         </div>
 
         <div class="row">
+            <div class="col s3"><b>TERMO DE CAUTELA:</b></div>
+            <div class="col s4"> <a title="Abrir Termo" target='_blank' href="{{route('cautela.termo', [$cautela->id])}}  ">VISUALIZAR</a> </div>
+        </div>
+
+        <div class="row">
             <div class="col s3"><b>OBSERVAÇÃO:</b></div>
             <div class="col s4"> {{ $cautela->obs }}</div>
         </div>
 
         <br>
-
-        <form action="{{route('cautela.descautela', [$cautela->id])}}" method="post">
-            {{ method_field('PUT')}}
-            {{ csrf_field() }}
-            <button title="Descautelar" class="btn red">DESCAUTELAR</button>
-            <a title="Criar documento" class="btn blue" href="{{route('cautela.termo', [$cautela->id])}}  ">TERMO DE CAUTELA</a>
-        </form>
-
         
+            <a title="Abrir Termo" class="btn red" href="{{route('cautela.termodescautela', [$cautela->id])}}  ">DESCAUTELAR</a>
+   
         
 
 </div>

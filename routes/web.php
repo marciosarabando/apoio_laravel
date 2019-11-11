@@ -36,7 +36,9 @@ Route::group(['middleware' => 'auth', 'prefix' => 'home'], function () {
     Route::put('cautela/descautela/{id}',['as'=>'cautela.descautela','uses'=>'CautelaController@descautela']);
     Route::get('cautela/nova/{equipamento_id}', ['as'=>'cautela.abreform','uses'=>'CautelaController@exibeFormCautelarEquipamento']);
     Route::get('cautela/termo/{equipamento_id}', ['as'=>'cautela.termo','uses'=>'CautelaController@geraTermoCautela']);
+    Route::get('cautela/termodescautela/{equipamento_id}', ['as'=>'cautela.termodescautela','uses'=>'CautelaController@abreTermoDescautela']);
     Route::put('cautela/termo/salvar/{id}',['as'=>'cautela.salvartermo','uses'=>'CautelaController@salvarTermo']);
+    Route::put('cautela/termodescautela/salvar/{id}',['as'=>'cautela.salvartermodescautela','uses'=>'CautelaController@salvarTermoDescautela']);
     Route::post('cautela/buscar', ['as'=>'cautela.buscar','uses'=>'CautelaController@buscarPorNome']);
 
     Route::resource('pessoa','PessoaController');

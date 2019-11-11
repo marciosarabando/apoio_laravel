@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Equipamento extends Model
 {
     protected $table = 'equipamentos';
-    protected $fillable = ['equipamento_tipo_id','marca_modelo','nr_serie', 'obs', 'equipamento_status_id'];
+    protected $fillable = ['equipamento_tipo_id','marca_modelo','nr_serie', 'nr_patrimonio', 'obs', 'equipamento_status_id'];
 
     //Muitos para 1
     public function equipamento_tipo()

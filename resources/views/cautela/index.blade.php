@@ -63,7 +63,8 @@
 
                             <td>
                                 <a title="Abrir" class="btn blue" href="{{ route('cautela.show',$cautela->id) }}">DETALHES</a>
-                                <a title="Termo" class="btn orange" href="{{ route('cautela.termo',$cautela->id) }}">TERMO</a>                            
+                                <a title="Termo" target='_blank' class="btn orange" href="{{ route('cautela.termo', [$cautela->id]) }}">TERMO DE CAUTELA</a>                            
+                                <a title="Abrir Termo" class="btn red" href="{{route('cautela.termodescautela', [$cautela->id])}}  ">DESCAUTELAR</a>
                             </td>
                             
                         <tr>

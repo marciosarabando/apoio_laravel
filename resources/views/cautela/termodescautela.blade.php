@@ -165,9 +165,9 @@
     <center>
         <img src="{{url('img/brasao2rm.png')}}" height='230'/>
         <br>
-        <h5>TERMO DE CAUTELA DE EQUIPAMENTO</h5>
+        <h5>TERMO DE DEVOLUÇÃO DE EQUIPAMENTO (DESCAUTELA)</h5>
         
-        <p>Eu, <b>{{ $pessoa->cargo->nome }} {{ $pessoa->nome }}</b> lotado na OM/Seção <b>{{ $pessoa->secao }}</b>, declaro ter recebido do Serviço de Fiscalização de Produtos Controlados da 2º Região Militar o seguinte equipamento:</p>
+        <p>Eu, <b>{{ Auth::user()->cargo->nome }} {{ Auth::user()->nm_guerra }} </b>declaro ter recebido do <b>Srº(ª) {{ $pessoa->cargo->nome }} {{ $pessoa->nome }}</b> da OM/Seção <b>{{ $pessoa->secao }}</b>, o seguinte equipamento:</p>
         <br>
 
         <div class='container'>
@@ -210,45 +210,52 @@
         </div>
 
         <!-- exibe mes por extenso -->
+
+            @if($cautela->dt_descautela != null)
+                <?php $data_descautela = $cautela->dt_descautela; ?>
+            @else
+                <?php $data_descautela = $hoje; ?>
+            @endif
        
-            @if(date("m", strtotime($cautela->dt_cautela)) == "1")
+            @if(date("m", strtotime($data_descautela)) == "1")
                 <?php $mes = 'janeiro'?>
-            @elseif(date("m", strtotime($cautela->dt_cautela))== 2)
+            @elseif(date("m", strtotime($data_descautela))== 2)
                 <?php $mes = 'fevereiro'?>
-            @elseif(date("m", strtotime($cautela->dt_cautela)) == 3)
+            @elseif(date("m", strtotime($data_descautela)) == 3)
                 <?php $mes = 'março'?>
-            @elseif(date("m", strtotime($cautela->dt_cautela)) == 4)
+            @elseif(date("m", strtotime($data_descautela)) == 4)
                 <?php $mes = 'abril'?>
-            @elseif(date("m", strtotime($cautela->dt_cautela)) == 5)
+            @elseif(date("m", strtotime($data_descautela)) == 5)
                 <?php $mes = 'maio'?>
-            @elseif(date("m", strtotime($cautela->dt_cautela)) == 6)
+            @elseif(date("m", strtotime($data_descautela)) == 6)
                 <?php $mes = 'junho'?>
-            @elseif(date("m", strtotime($cautela->dt_cautela)) == 7)
+            @elseif(date("m", strtotime($data_descautela)) == 7)
                 <?php $mes = 'julho'?>
-            @elseif(date("m", strtotime($cautela->dt_cautela)) == 8)
+            @elseif(date("m", strtotime($data_descautela)) == 8)
                 <?php $mes = 'agosto'?>
-            @elseif(date("m", strtotime($cautela->dt_cautela)) == 9)
+            @elseif(date("m", strtotime($data_descautela)) == 9)
                 <?php $mes = 'setembro'?>
-            @elseif(date("m", strtotime($cautela->dt_cautela)) == 10)
+            @elseif(date("m", strtotime($data_descautela)) == 10)
                 <?php $mes = 'outubro'?>
-            @elseif(date("m", strtotime($cautela->dt_cautela)) == 11)
+            @elseif(date("m", strtotime($data_descautela)) == 11)
                 <?php $mes = 'novembro' ?>
-            @elseif(date("m", strtotime($cautela->dt_cautela)) == 12)
+            @elseif(date("m", strtotime($data_descautela)) == 12)
                 <?php $mes = 'dezembro'?>
             @endif
         
         
         <br><br><br><br>
-        Quartel General do Ibirapuera, {{date("d", strtotime($cautela->dt_cautela))}} de {{ $mes }} de {{date("Y", strtotime($cautela->dt_cautela))}}.
+        Quartel General do Ibirapuera, {{date("d", strtotime($data_descautela))}} de {{ $mes }} de {{date("Y", strtotime($data_descautela))}}.
+
         <br><br>
-        <img src="{{ $cautela->assinatura_cautela }}" alt="">
+        <img src="{{ $cautela->assinatura_descautela }}" alt="">
     </center>
 
     <br>
 
     <center>
 
-        @if($cautela->assinatura_cautela == "")
+        @if($cautela->assinatura_descautela == "")
 
             <canvas style="background:beige" id="canvas" class="canvas" width="600" height="100">
                 Seu browser não suporta canvas, é hora de trocar!.
@@ -262,25 +269,24 @@
         
         @endif
         
-    
-        <b>{{ $pessoa->nome }} - {{ $pessoa->cargo->nome }}</b>
+        <b>{{ Auth::user()->cargo->nome }} {{ Auth::user()->nm_guerra }} </b>
         <br><br>
         
-        @if($cautela->assinatura_cautela == null)
+        @if($cautela->assinatura_descautela == null)
 
-            <form action="{{route('cautela.salvartermo', [$cautela->id])}}" method="post">
+            <form action="{{route('cautela.salvartermodescautela', [$cautela->id])}}" method="post">
                 {{ method_field('PUT')}}
                 {{ csrf_field() }}
-                <input type="hidden" id="txt_assinatura" name="assinatura_cautela">
+                <input type="hidden" id="txt_assinatura" name="assinatura_descautela">
                 <a class="btn red" onclick='limpa_assinatura()'>LIMPAR ASSINATURA</a> 
-                <button class="btn green" onclick='salva_assinatura()'>FINALIZAR ASSINATURA</button>
+                <button class="btn green" onclick='salva_assinatura()'>CONFIRMAR RECEBIMENTO</button>
             </form>
+
+            <br>
+            <a class="btn blue" href="{{ url()->previous() }}">VOLTAR</a> 
         
         @endif
-        <br>
-        @if(isset($voltar))
-            <a class="btn blue" href="{{ route('cautela.index') }}">VOLTAR</a> 
-        @endif
+        
         
 
     </center>

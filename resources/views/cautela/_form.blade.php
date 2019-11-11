@@ -39,6 +39,6 @@
 </div>
 
 <div class="input-field">
-	<input type="text" name="obs" class="validade" value="{{ isset($registro->obs) ? $registro->obs : '' }}">
+	<input type="text" name="obs_cautela" class="validade" value="{{ isset($registro->obs_cautela) ? $registro->obs_cautela : '' }}">
 	<label>Observação</label>
 </div>

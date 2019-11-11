@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Cautela;
 use App\Equipamento;
 use App\Pessoa;
+use App\User;
 use Illuminate\Support\Facades\Auth;
 
 class CautelaController extends Controller
@@ -26,7 +27,7 @@ class CautelaController extends Controller
         
         //Busca todas as cautelas que nao possuem data de descautela
         $cautelas = Cautela::where('dt_descautela','=',null)->get();
-
+        //return $cautelas;
         return view ('cautela.index', compact('caminhos','cautelas'));
     }
 
@@ -62,16 +63,25 @@ class CautelaController extends Controller
         date_default_timezone_set('America/Sao_Paulo');
 	    $hoje = date('Y-m-d H:i');
 
-        //Cautela::create($request->all());
+        //Verifica se o Equipamento está disponível
+        $equipamento = Equipamento::find($request->equipamento_id);
+
+        if($equipamento->equipamento_status_id != 1)
+        {
+            return 'Atenção: o equipamento selecionado não está disponível para cautela!';
+        }
+
+
         $cautela = new Cautela();
         $cautela->equipamento_id = $request->input('equipamento_id');
         $cautela->pessoa_id = $request->input('pessoa_id');
         $cautela->dt_cautela = $hoje;
         $cautela->dt_descautela = null;
-        $cautela->obs = $request->input('obs');
+        $cautela->obs_cautela = $request->input('obs_cautela');
         $cautela->user_id = Auth::user()->id;
-
-        
+        $cautela->user_descautela_id = Auth::user()->id;
+        $cautela->assinatura_descautela = null;
+        $cautela->obs_descautela = null;
 
         if($cautela->save())
         {
@@ -82,10 +92,11 @@ class CautelaController extends Controller
 
             $cautela->vinculaEquipamento($equipamento);
             
-            //return $cautela;
-            
-            //return redirect('produtos/create')->with('success','Produto Cadastrado com Sucesso!!!');
-            return redirect()->route('cautela.termo', $cautela->id);
+            $pessoa = Pessoa::with('cargo')->find($cautela->pessoa_id);
+            $equipamento = Equipamento::with('equipamento_tipo')->find($cautela->equipamento_id);
+            $voltar = 1;
+
+            return view ('cautela.termo',compact('cautela','pessoa','equipamento','voltar'));
         }
     }
 
@@ -145,6 +156,18 @@ class CautelaController extends Controller
 
     }
 
+    public function abreTermoDescautela($id)
+    {
+        date_default_timezone_set('America/Sao_Paulo');
+        $hoje = date('Y-m-d H:i');
+
+        $cautela = Cautela::with('equipamentos')->find($id);
+        $pessoa = Pessoa::with('cargo')->find($cautela->pessoa_id);
+        $equipamento = Equipamento::with('equipamento_tipo')->find($cautela->equipamento_id);
+        //return $equipamento;
+        return view ('cautela.termodescautela',compact('cautela','pessoa','equipamento','hoje'));
+    }
+
     public function descautela($id)
     {
         date_default_timezone_set('America/Sao_Paulo');
@@ -181,19 +204,41 @@ class CautelaController extends Controller
     }
 
     public function geraTermoCautela($id){
+       //return $origem;
         $cautela = Cautela::with('equipamentos')->find($id);
         $pessoa = Pessoa::with('cargo')->find($cautela->pessoa_id);
         $equipamento = Equipamento::with('equipamento_tipo')->find($cautela->equipamento_id);
-        //return $equipamento;
+        
         return view ('cautela.termo',compact('cautela','pessoa','equipamento'));
     }
 
     public function salvarTermo(Request $request, $id){
         $cautela = Cautela::find($id);
-        $cautela->assinatura = $request->assinatura;
+        $cautela->assinatura_cautela = $request->assinatura_cautela;
         $cautela->update();
-        //geraTermoCautela($id); 
-        return redirect()->route('cautela.termo', $id);
+       
+        $pessoa = Pessoa::with('cargo')->find($cautela->pessoa_id);
+        $equipamento = Equipamento::with('equipamento_tipo')->find($cautela->equipamento_id);
+        $voltar = 1;
+
+        return view ('cautela.termo',compact('cautela','pessoa','equipamento','voltar'));
+    }
+
+    public function salvarTermoDescautela(Request $request, $id)
+    {
+        date_default_timezone_set('America/Sao_Paulo');
+        $hoje = date('Y-m-d H:i');
+
+        $cautela = Cautela::find($id);
+        $cautela->assinatura_descautela = $request->assinatura_descautela;
+        $cautela->dt_descautela = $hoje;
+        $cautela->update();
+
+        $equipamento = Equipamento::find($cautela->equipamento_id);
+        $equipamento->equipamento_status_id = 1;
+        $equipamento->update();
+
+        return redirect()->route('cautela.index');
     }
 
     public function buscarPorNome(Request $request)

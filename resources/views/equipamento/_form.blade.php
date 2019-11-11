@@ -28,6 +28,11 @@
 </div>
 
 <div class="input-field">
+	<input type="text" name="nr_patrimonio" class="upper validade" value="{{ isset($registro->nr_patrimonio) ? $registro->nr_patrimonio : '' }}">
+	<label>Número do Patrimônio (SisCofis)</label>
+</div>
+
+<div class="input-field">
 	<input type="text" name="obs" class="upper validade" value="{{ isset($registro->obs) ? $registro->obs : '' }}">
 	<label>Observação</label>
 </div>

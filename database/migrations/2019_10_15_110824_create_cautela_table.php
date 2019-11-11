@@ -16,20 +16,24 @@ class CreateCautelaTable extends Migration
         Schema::create('cautelas', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('equipamento_id')->unsigned();
-            $table->integer('pessoa_id')->unsigned();
-
+            
             $table->dateTime('dt_cautela');
-            $table->dateTime('dt_descautela')->nullable();
-
-            $table->string('obs')->nullable();
-          
+            $table->integer('pessoa_id')->unsigned();
+            $table->longText('assinatura_cautela')->nullable();
+            $table->string('obs_cautela')->nullable();
             $table->integer('user_id')->unsigned();
 
+            $table->dateTime('dt_descautela')->nullable();
+            $table->integer('user_descautela_id')->unsigned();
+            $table->longText('assinatura_descautela')->nullable();
+            $table->string('obs_descautela')->nullable();
+            
             $table->timestamps();
 
             $table->foreign('equipamento_id')->references('id')->on('equipamentos')->onDelete('cascade');
             $table->foreign('pessoa_id')->references('id')->on('pessoas')->onDelete('cascade');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('user_descautela_id')->references('id')->on('users')->onDelete('cascade');
         });
 
         //Tabela de Relacionamento Cautelas com Equipamentos

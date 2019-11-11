@@ -66,6 +66,7 @@ class EquipamentoController extends Controller
         $equipamento->equipamento_tipo_id = $request->input('equipamento_tipo_id');
         $equipamento->marca_modelo = mb_strtoupper($request->input('marca_modelo'),'UTF-8');
         $equipamento->nr_serie = mb_strtoupper($request->input('nr_serie'),'UTF-8');
+        $equipamento->nr_patrimonio = mb_strtoupper($request->input('nr_patrimonio'),'UTF-8');
         $equipamento->obs = mb_strtoupper($request->input('obs'),'UTF-8');
         $equipamento->equipamento_status_id = 1;
         $equipamento->user_id = Auth::user()->id;
