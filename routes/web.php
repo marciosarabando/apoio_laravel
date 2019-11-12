@@ -48,3 +48,7 @@ Route::group(['middleware' => 'auth', 'prefix' => 'home'], function () {
     Route::post('equipamento/buscar', ['as'=>'equipamento.buscar','uses'=>'EquipamentoController@buscar']);
 
 });
+
+Route::get('/creditos', function () {
+    return view('creditos.index');
+});

@@ -25,11 +25,25 @@
       </ul>
 
       <ul id="nav-mobile" class="sidenav">
-        <li><a href="{{ url('/home') }}">HOME</a></li>
+
+        @if (Auth::guest())
+        <li><a href="{{ url('/login') }}">ENTRAR</a></li>
+        @else
+        <li><a href="{{ url('/home')}}">{{ Auth::user()->cargo->nome }} {{ Auth::user()->nm_guerra }}</a></li>
         <li><a href="{{ url('/home/cautela') }}">CAUTELA</a></li>
         <li><a href="{{ url('/home/equipamento') }}">EQUIPAMENTO</a></li>
         <li><a href="{{ url('/home/pessoa') }}">PESSOA</a></li>
+        <li><a href="{{ url('/logout') }}"
+                onclick="event.preventDefault();
+                         document.getElementById('logout-form').submit();">
+                SAIR
+            </a>
+        </li>
+        @endif
+
+
       </ul>
+      
       <a href="/home" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">Menu</i></a>
     </div>
   </nav>

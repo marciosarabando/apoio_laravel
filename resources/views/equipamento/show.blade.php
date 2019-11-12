@@ -41,7 +41,7 @@
        
         <b>HISTÓRICO DE CAUTELAS</b>
         
-        <table>
+        <table class="responsive-table">
             <thead>
                 <th>
                     CAUTELADO EM

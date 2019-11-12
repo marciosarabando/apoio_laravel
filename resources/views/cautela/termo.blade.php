@@ -249,11 +249,10 @@
     <center>
 
         @if($cautela->assinatura_cautela == "")
-
-            <canvas style="background:beige" id="canvas" class="canvas" width="600" height="100">
+            <canvas style="background:beige" id="canvas" class="canvas" width="500" height="100">
                 Seu browser não suporta canvas, é hora de trocar!.
             </canvas>
-            <br>
+        <br>
         @else
         
             <canvas id="canvas" hidden>

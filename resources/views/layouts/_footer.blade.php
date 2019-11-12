@@ -28,7 +28,7 @@
     <div class="footer-copyright">
       <div class="container">
       © 2019 Copyright {{config('app.logoSite')}}
-      <a class="orange-text text-lighten-3 right" href="#">{{config('app.autorSite')}}</a>
+      <a class="orange-text text-lighten-3 right" href="{{ url('creditos') }}">{{config('app.autorSite')}}</a>
       </div>
     </div>
   </footer>

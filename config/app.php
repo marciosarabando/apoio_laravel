@@ -16,7 +16,7 @@ return [
     'logoSite' => 'APOIO SFPC/2',
     'corSite' => 'green darken-4',
     'descricaoSite' => 'Sistema de Apoio de Informática do SFPC/2',
-    'autorSite' => '1º Ten Sarabando',
+    'autorSite' => 'Conheça a Equipe de TI do SFPC/2',
 
     /*
     |--------------------------------------------------------------------------
