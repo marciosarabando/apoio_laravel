@@ -26,7 +26,7 @@ class CautelaController extends Controller
         //$cautelas = Cautela::all();
         
         //Busca todas as cautelas que nao possuem data de descautela
-        $cautelas = Cautela::where('dt_descautela','=',null)->get();
+        $cautelas = Cautela::where('dt_descautela','=',null)->orderBy('Id','desc')->paginate(5);
         //return $cautelas;
         return view ('cautela.index', compact('caminhos','cautelas'));
     }

@@ -72,6 +72,9 @@
                 </tbody>
 
             </table>
+
+            <!-- Sistema de Paginação Simples do Laravel-->
+            {{ $cautelas->links() }}
         
         </div>
 

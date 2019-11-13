@@ -16,7 +16,7 @@ class EquipamentoController extends Controller
      */
     public function index()
     {
-        $equipamentos = Equipamento::with('cautelas')->paginate(5);
+        $equipamentos = Equipamento::with('cautelas')->orderBy('Id','desc')->paginate(5);
 
         $caminhos = [
             ['url' => '/home','titulo' => 'Home'],
