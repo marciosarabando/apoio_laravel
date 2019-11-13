@@ -147,7 +147,9 @@ class EquipamentoController extends Controller
         $registro = new Equipamento;
         $registro->nr_serie = $nr_serie;
 
-        $equipamentos = Equipamento::where('nr_serie','LIKE','%'.$nr_serie.'%')->paginate(5);
+        $equipamentos = Equipamento::where('nr_serie','LIKE','%'.$nr_serie.'%')
+        ->orwhere('nr_patrimonio','LIKE','%'.$nr_serie.'%')
+        ->paginate(5);
         
         $caminhos = [
             ['url' => '/home','titulo' => 'Home'],

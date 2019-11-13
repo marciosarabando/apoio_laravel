@@ -8,16 +8,16 @@
         @include('_caminho')
 
         <div class='row'>
-            <div class="col l6">
+            <div class="col l4">
 
             </div>
-            <div class="col l6">      
+            <div class="col l8">      
                     <form action="{{ route('equipamento.buscar') }}" method="post">
                     {{ csrf_field() }}
                         <div class="col l11">
                             <div class="input-field">
                                 <input type="text" name="buscar_nr_serie" class="upper validade" value="{{ isset($registro->nr_serie) ? $registro->nr_serie : '' }}">
-                                <label>Localizar por Nr de Série</label>
+                                <label>Localizar por Nr de Série ou Patrimônio</label>
                             </div>
                         </div>
                         <br>
