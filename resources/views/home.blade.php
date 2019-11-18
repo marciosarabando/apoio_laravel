@@ -56,7 +56,7 @@
                     <p>Usuários do Sistema</p>
                 </div>
                 <div class="card-action">
-                    <a href="{{route('pessoa.index')}}">Vizualizar</a>
+                    <a href="{{route('usuario.index')}}">Vizualizar</a>
                 </div>
             </div>
         </div>
