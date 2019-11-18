@@ -13,9 +13,9 @@ return [
     */
 
     'name' => env('APP_NAME', 'Apoio/SFPC'),
-    'logoSite' => 'APOIO SFPC/2',
+    'logoSite' => 'CAUTELA DIGITAL SFPC/2',
     'corSite' => 'green darken-4',
-    'descricaoSite' => 'Sistema de Apoio de Informática do SFPC/2',
+    'descricaoSite' => 'Sistema de Cautela Digital de Equipamentos de Informática do SFPC/2',
     'autorSite' => 'Conheça a Equipe de TI do SFPC/2',
 
     /*

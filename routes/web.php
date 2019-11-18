@@ -26,11 +26,10 @@ Route::get('/usuario/cadastrar', 'Usuario@showFormRegistro')->name('novousuario'
 Route::group(['middleware' => 'auth', 'prefix' => 'home'], function () {
 
     Route::resource('equipamento','EquipamentoController');
-
     Route::get('equipamento/{id}', ['as'=>'equipamento','uses'=>'EquipamentoController@index']);
     Route::post('equipamento',['as'=>'equipamento.store','uses'=>'EquipamentoController@store']);
     Route::delete('equipamento/{equipamento}', ['as'=>'equipamento.destroy','uses'=>'EquipamentoController@destroy']);
-  
+    Route::post('equipamento/buscar', ['as'=>'equipamento.buscar','uses'=>'EquipamentoController@buscar']);
 
     Route::resource('cautela','CautelaController');
     Route::put('cautela/descautela/{id}',['as'=>'cautela.descautela','uses'=>'CautelaController@descautela']);
@@ -42,12 +41,13 @@ Route::group(['middleware' => 'auth', 'prefix' => 'home'], function () {
     Route::post('cautela/buscar', ['as'=>'cautela.buscar','uses'=>'CautelaController@buscarPorNome']);
 
     Route::resource('pessoa','PessoaController');
-
     Route::post('pessoa/buscar', ['as'=>'pessoa.buscar','uses'=>'PessoaController@buscar']);
-   
-    Route::post('equipamento/buscar', ['as'=>'equipamento.buscar','uses'=>'EquipamentoController@buscar']);
+
+    Route::resource('usuario','Usuario');
 
 });
+
+
 
 Route::get('/creditos', function () {
     return view('creditos.index');
