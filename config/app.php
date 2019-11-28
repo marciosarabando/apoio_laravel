@@ -12,7 +12,7 @@ return [
     | any other location as required by the application or its packages.
     */
 
-    'name' => env('APP_NAME', 'Apoio/SFPC'),
+    'name' => env('APP_NAME', 'CautelaDigital/SFPC'),
     'logoSite' => 'CAUTELA DIGITAL SFPC/2',
     'corSite' => 'green darken-4',
     'descricaoSite' => 'Sistema de Cautela Digital de Equipamentos de Informática do SFPC/2',

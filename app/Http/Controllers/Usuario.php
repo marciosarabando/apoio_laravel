@@ -23,9 +23,34 @@ class Usuario extends Controller
 
         $caminhos = [
             ['url' => '/home','titulo' => 'Home'],
-            ['url' => '/home/usuario','titulo' => 'Usuarios'],
+            ['url' => '/home/usuario','titulo' => 'Usuários'],
         ];
         
         return view ('usuario.index', compact('caminhos','usuarios'));
     }
+
+    public function edit($id)
+    {
+        $cargos = Cargo::all();
+        $secoes = Secao::all();
+        $registro = User::find($id);
+
+        $caminhos = [
+            ['url' => '/home','titulo' => 'Home'],
+            ['url' => '/home/usuario','titulo' => 'Usuário'],
+            ['url' => '','titulo' => 'Editar'],
+        ];
+
+        return view('usuario.editar', compact('caminhos' ,'cargos', 'secoes', 'registro'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        User::find($id)->update($request->all());
+        return redirect()->route('usuario.index');
+    }
+
+
+
+
 }

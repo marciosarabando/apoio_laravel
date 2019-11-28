@@ -71,10 +71,10 @@
       </div>
       <div class="card-stacked">
         <div class="card-content">
-          <p><b>Danilo XXXXXXX Jimenez.</b></p>
+          <p><b>Danilo Gabriel Caetano Jimenez.</b></p>
           <p>Técnico em TI.</p>
           <br>
-          <p>Nasc: XX/XX/XXXX</p>
+          <p>Nasc: 01/03/1989</p>
           
         </div>
       

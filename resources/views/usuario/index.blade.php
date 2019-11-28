@@ -36,13 +36,9 @@
                             <td>{{$usuario->nm_guerra}}</td>
                              
                             <td>
-                                <form action="{{route('usuario.destroy', [$usuario->id])}}" method="post">
+                                
                                     <a title="Editar" class="btn orange" href="{{ route('usuario.edit',$usuario->id) }}"><i class="material-icons">mode_edit</i></a>
-                                    {{ method_field('DELETE')}}
-                                    {{ csrf_field() }}
-                                    <button title="Deletar" class="btn red"><i class="material-icons">delete</i></button>
-                                    <a class="btn green" href="{{ route('usuario.create') }}"><i class="material-icons">swap_vertical_circle</i></a>
-                                </form>
+                                    
                             </td>
                         <tr>
                     @endforeach
@@ -55,9 +51,7 @@
         </div>
 
         <div class="row">
-		
-				<a class="btn blue" href="{{route('pessoa.create')}}">CADASTRAR</a>
-	
+				<a class="btn blue" href="{{route('novousuario')}}">CADASTRAR</a>
 		</div>
 
 

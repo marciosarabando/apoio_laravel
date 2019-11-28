@@ -62,9 +62,14 @@
                             <td>{{date("d/m/Y H:i", strtotime($cautela->dt_cautela))}}</td>                         
 
                             <td>
-                                <a title="Abrir" class="btn blue" href="{{ route('cautela.show',$cautela->id) }}">DETALHES</a>
-                                <a title="Termo" target='_blank' class="btn orange" href="{{ route('cautela.termo', [$cautela->id]) }}">TERMO DE CAUTELA</a>                            
-                                <a title="Abrir Termo" class="btn red" href="{{route('cautela.termodescautela', [$cautela->id])}}  ">DESCAUTELAR</a>
+                                
+                                @if($cautela->assinatura_cautela == null)
+                                <a href="{{ route('cautela.termo', [$cautela->id]) }}"><span class="new badge red">Atenção: Falta assinatura do Termo! Clique para assinar.</span></a>
+                                @else
+                                    <a title="Abrir" class="btn blue" href="{{ route('cautela.show',$cautela->id) }}">DETALHES</a>
+                                    <a title="Termo" target='_blank' class="btn orange" href="{{ route('cautela.termo', [$cautela->id]) }}">TERMO DE CAUTELA</a>                            
+                                    <a title="Descautelar" class="btn red" href="{{route('cautela.termodescautela', [$cautela->id])}}  ">DESCAUTELAR</a>
+                                @endif
                             </td>
                             
                         <tr>
